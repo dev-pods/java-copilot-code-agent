@@ -1,5 +1,5 @@
 
-## Etapa 4: Hora de praticar! � 🏄
+## Etapa 4: Hora de praticar! 🤾 🏄
 
 Agora, com o ambiente do Copilot preparado, vamos trabalhar em issues mais complexas para deixar o site de Atividades Extracurriculares ainda melhor! Vamos ver do que nosso novo agente de código é capaz!
 
