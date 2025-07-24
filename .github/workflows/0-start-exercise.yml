@@ -18,7 +18,7 @@ jobs:
     if: |
       !github.event.repository.is_template
     name: Iniciar Exercício
-    uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.6.0
+    uses: dev-pods/exercise-toolkit/.github/workflows/start-exercise.yml@v0.6.0
     with:
       exercise-title: "Expanda sua equipe com o agente de codificação Copilot"
       intro-message: "Neste exercício, você desbloqueará o próximo nível do seu assistente de codificação com IA favorito. Vamos aprender como atribuir tarefas de codificação do Copilot diretamente no GitHub! 💻✨"
