@@ -59,67 +59,66 @@ Vamos adicionar informações sobre a escola, papéis a serem assumidos, tarefas
 
 ### ⌨️ Atividade: Prepare o ambiente de codificação para o Copilot
 
-Customizing Copilot's development environment and adjusting [permissions](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/controlling-permissions-for-github_token) is done with a unique [GitHub Actions](https://github.com/features/actions) workflow. For all configuration options, see the [pre-installing dependencies for Copilot](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/customizing-copilot-coding-agents-development-environment#pre-installing-tools-or-dependencies-in-copilots-environment) documentation.
+A personalização do ambiente de desenvolvimento do Copilot e o ajuste das [permissões](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/controlling-permissions-for-github_token) são feitos com um workflow exclusivo do [GitHub Actions](https://github.com/features/actions). Para todas as opções de configuração, veja a documentação sobre [pré-instalação de dependências para o Copilot](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/customizing-copilot-coding-agents-development-environment#pre-installing-tools-or-dependencies-in-copilots-environment).
 
-1. Ensure you are still on the `prepare-environment` branch.
+1. Certifique-se de que você ainda está no branch `prepare-environment`.
 
-1. Navigate to the `.github/workflows/` directory.
+1. Navegue até o diretório `.github/workflows/`.
 
-1. In the top right, click the **Add file** button and select **Create new file**.
+1. No canto superior direito, clique no botão **Adicionar arquivo** e selecione **Criar novo arquivo**.
 
-   <img width="250" alt="image" src="https://github.com/user-attachments/assets/c135dd3f-72bd-4d2b-b21f-9c4968a06f5f" />
+   <img width="250" alt="imagem" src="https://github.com/user-attachments/assets/c135dd3f-72bd-4d2b-b21f-9c4968a06f5f" />
 
-1. Set the file name to `copilot-setup-steps.yml`.
+1. Defina o nome do arquivo como `copilot-setup-steps.yml`.
 
-   <img width="650" alt="image" src="https://github.com/user-attachments/assets/ac615290-1045-45a5-8201-637721ef6fd2" />
+   <img width="650" alt="imagem" src="https://github.com/user-attachments/assets/ac615290-1045-45a5-8201-637721ef6fd2" />
 
-1. Paste the following workflow configuration, which will pre-install the dependencies for the website's Python backend.
+1. Cole a configuração de workflow abaixo, que irá pré-instalar as dependências do backend Python do site.
 
    ```yml
    name: "Copilot Setup Steps"
 
    on: workflow_dispatch
    jobs:
-     # This is the required job name. If different, Copilot will ignore it.
+     # Este é o nome de job obrigatório. Se for diferente, o Copilot irá ignorar.
      copilot-setup-steps:
        runs-on: ubuntu-latest
 
-       # Grant Copilot early access to read the repository content.
+       # Concede acesso antecipado ao Copilot para ler o conteúdo do repositório.
        permissions:
          contents: read
 
        steps:
-         - name: Checkout code
+         - name: Fazer checkout do código
            uses: actions/checkout@v4
 
-         - name: Set up Python
+         - name: Configurar Python
            uses: actions/setup-python@v4
            with:
              python-version: "3.x"
              cache: "pip"
 
-         - name: Install Python dependencies
+         - name: Instalar dependências Python
            run: |
              python -m pip install --upgrade pip
              pip install -r src/requirements.txt
    ```
 
-   > 🪧 **Note:** Copilot will automatically retrieve the repository contents later. This workflow provides early access during setup to install the dependencies.
+   > 🪧 **Nota:** O Copilot irá buscar automaticamente o conteúdo do repositório depois. Este workflow fornece acesso antecipado durante a configuração para instalar as dependências.
 
-   > 🪧 **Note:** Copilot will automatically identify and install missing dependencies. Doing it now saves Copilot time and ensures proper environment setup
+   > 🪧 **Nota:** O Copilot irá identificar e instalar dependências ausentes automaticamente. Fazer isso agora economiza tempo do Copilot e garante a configuração correta do ambiente.
 
-1. In the top right, click the **Commit changes...** button and commit your changes to the `prepare-environment` branch.
+1. No canto superior direito, clique no botão **Commit changes...** e faça commit das alterações no branch `prepare-environment`.
 
-1. Create a **pull request**, but do **NOT** merge it yet. Mona will check your files to confirm they are correct.
+1. Crie um **pull request**, mas **NÃO** faça o merge ainda. A Mona irá verificar seus arquivos para confirmar se estão corretos.
 
-1. After Mona shares the next steps, you can merge the pull request.
+1. Depois que a Mona compartilhar os próximos passos, você pode fazer o merge do pull request.
 
-> 🙋 **Question:** How did the manual process feel compared to letting Copilot do most of the work? 🤔
-
+> 🙋 **Pergunta:** Como foi o processo manual comparado a deixar o Copilot fazer a maior parte do trabalho? 🤔
 
 <details>
-<summary>🤷 Having trouble?</summary><br/>
+<summary>🤷 Está com problemas?</summary><br/>
 
-If you accidentally merged the pull request before Mona shared feedback about mistakes, that is ok. Just recreate the branch and try again with a new pull request.
+Se você acidentalmente fez o merge do pull request antes da Mona compartilhar o feedback sobre erros, tudo bem. Basta recriar o branch e tentar novamente com um novo pull request.
 
 </details>

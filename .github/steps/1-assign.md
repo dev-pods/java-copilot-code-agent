@@ -1,4 +1,3 @@
-
 ## Etapa 1: Habilite o agente de código Copilot
 
 No exercício [Primeiros Passos com o GitHub Copilot](/skills/getting-started-with-github-copilot), aprendemos como usar o Copilot no editor de código para fazer grandes melhorias no site de Atividades Extracurriculares da Escola Mergington. 🎻 ⚽️ ♟️
@@ -89,61 +88,61 @@ flowchart LR
     class pl1,pl2,pl3,pl4 purple-line
 ```
 
-### Is this safe?
+### Isso é seguro?
 
-Several security precautions have been implemented to help reduce concerns. Here are a few limitations that you might need to consider when asking Copilot to work on an issue.
+Várias precauções de segurança foram implementadas para ajudar a reduzir preocupações. Aqui estão algumas limitações que você deve considerar ao pedir para o Copilot trabalhar em uma issue.
 
-- Copilot can only make changes on the branch it created and resources provided by the repository.
-- Copilot has [configurable firewall](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/customizing-copilot-coding-agents-development-environment#customizing-or-disabling-the-agents-firewall) that restricts access to the internet.
-- Only users with write access can assign Copilot an issue.
-- Hidden content in issues (like commented code) is ignored.
+- O Copilot só pode fazer alterações no branch que ele criou e nos recursos fornecidos pelo repositório.
+- O Copilot possui um [firewall configurável](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/customizing-copilot-coding-agents-development-environment#customizing-or-disabling-the-agents-firewall) que restringe o acesso à internet.
+- Apenas usuários com acesso de escrita podem atribuir uma issue ao Copilot.
+- Conteúdo oculto em issues (como código comentado) é ignorado.
 
 > [!IMPORTANT]
-> The full list of mitigations and configuration settings can be found in the [Risks & Mitigations](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent#copilot-coding-agent-risks-and-mitigations) documentation.
+> A lista completa de mitigações e configurações pode ser encontrada na documentação [Riscos e Mitigações](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent#copilot-coding-agent-risks-and-mitigations).
 
-## ⌨️ Activity: (optional) Get to know our extracurricular activities site
+## ⌨️ Atividade: (opcional) Conheça o site de atividades extracurriculares
 
 > [!NOTE]
-> Opening a development environment and running the application is not necessary to complete this exercise. You can skip this activity if desired.
+> Abrir um ambiente de desenvolvimento e rodar a aplicação não é necessário para completar este exercício. Você pode pular esta atividade se desejar.
 
 <details>
-<summary>Show Steps</summary>
+<summary>Mostrar passos</summary>
 
-In other exercises, we have been developing the Extracurricular Activities website. You can follow these steps to start up the development environment and try it out.
+Em outros exercícios, temos desenvolvido o site de Atividades Extracurriculares. Você pode seguir estes passos para iniciar o ambiente de desenvolvimento e experimentá-lo.
 
-1. Right-click the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
+1. Clique com o botão direito do mouse no botão abaixo para abrir a página **Criar Codespace** em uma nova aba. Use a configuração padrão.
 
    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
 
-1. Wait some time for the environment to be prepared. It will automatically install all requirements and services.
+1. Aguarde um tempo para o ambiente ser preparado. Ele instalará automaticamente todos os requisitos e serviços.
 
-1. Validate the **GitHub Copilot** and **Python** extensions are installed and enabled.
+1. Valide se as extensões **GitHub Copilot** e **Python** estão instaladas e habilitadas.
 
    <img width="300" alt="copilot extension for VS Code" src="https://github.com/user-attachments/assets/ef1ef984-17fc-4b20-a9a6-65a866def468" /><br/>
    <img width="300" alt="python extension for VS Code" src="https://github.com/user-attachments/assets/3040c0f5-1658-47e2-a439-20504a384f77" />
 
-1. Try running the the application. In the left sidebar, select the **Run and Debug** tab and then press the **Start Debugging** icon.
+1. Tente executar a aplicação. Na barra lateral esquerda, selecione a aba **Run and Debug** e clique no ícone **Iniciar Depuração**.
 
    <details>
-   <summary>📸 Show screenshot</summary><br/>
+   <summary>📸 Mostrar captura de tela</summary><br/>
 
    <img width="300" alt="run and debug" src="https://github.com/user-attachments/assets/50b27f2a-5eab-4827-9343-ab5bce62357e" />
 
    </details>
 
    <details>
-   <summary>🤷 Having trouble?</summary><br/>
+   <summary>🤷 Tendo problemas?</summary><br/>
 
-   If the **Run and Debug** area is empty, try reloading VS Code: Open the command palette (`Ctrl`+`Shift`+`P`) and search for `Developer: Reload Window`.
+   Se a área **Run and Debug** estiver vazia, tente recarregar o VS Code: Abra a paleta de comandos (`Ctrl`+`Shift`+`P`) e procure por `Developer: Reload Window`.
 
    <img width="300" alt="empty run and debug panel" src="https://github.com/user-attachments/assets/0dbf1407-3a97-401a-a630-f462697082d6" />
 
    </details>
 
-1. Use the **Ports** tab to find the webpage address, open it, and verify it is running.
+1. Use a aba **Ports** para encontrar o endereço da página da web, abri-la e verificar se está em execução.
 
    <details>
-   <summary>📸 Show screenshot</summary><br/>
+   <summary>📸 Mostrar captura de tela</summary><br/>
 
    <img width="350" alt="ports tab" src="https://github.com/user-attachments/assets/8d24d6b5-202d-4109-8174-2f0d1e4d8d44" />
 
@@ -151,78 +150,78 @@ In other exercises, we have been developing the Extracurricular Activities websi
 
 </details>
 
-## ⌨️ Activity: Enable Copilot coding agent on your repository
+## ⌨️ Atividade: Habilite o agente de codificação Copilot em seu repositório
 
-Before we can start delegating requests from the teachers to Copilot, we need to grant access to our repository.
+Antes de começarmos a delegar solicitações dos professores para o Copilot, precisamos conceder acesso ao nosso repositório.
 
-1. In the top right, click your **user icon** and select **Settings**.
+1. No canto superior direito, clique em seu **ícone de usuário** e selecione **Configurações**.
 
    <img width="300" src="https://github.com/user-attachments/assets/7f8c3602-6de2-4c75-8047-8f4853495f46"><br/>
    <img width="300" src="https://github.com/user-attachments/assets/2aedfd6e-8b9f-40bb-bdf9-c9fd597f94a4">
 
-1. In the left navigation, expand the **Copilot** section and select **Coding agent**.
+1. Na navegação à esquerda, expanda a seção **Copilot** e selecione **Agente de codificação**.
 
    <img width="300" src="https://github.com/user-attachments/assets/79800990-6d5c-4055-acc9-b15734fe8b80">
 
-1. Change the **Repository access** field to `Only selected repositories`.
+1. Altere o campo **Acesso ao repositório** para `Apenas repositórios selecionados`.
 
    <img width="300" src="https://github.com/user-attachments/assets/7a665042-b064-4baf-a7e7-0dfc0261063e">
 
-1. Click the **Select repositories** button and ensure this exercise is select.
+1. Clique no botão **Selecionar repositórios** e verifique se este exercício está selecionado.
 
    <img width="300" src="https://github.com/user-attachments/assets/4bec16dc-7b52-4e95-b554-47252b622adb">
 
-## ⌨️ Activity: Assign Copilot an issue
+## ⌨️ Atividade: Atribua uma issue ao Copilot
 
-There are several important issues to get done before we leave, but let's do a test run on one of the simple options first. This will let us see how interactions and collaboration work, so we can update our docs for guiding the other teachers. Most don't know how to use a traditional coding editor!
+Existem várias issues importantes para serem resolvidas antes de sairmos, mas vamos fazer um teste em uma das opções mais simples primeiro. Isso nos permitirá ver como funcionam as interações e a colaboração, para que possamos atualizar nossa documentação para orientar os outros professores. A maioria não sabe como usar um editor de código tradicional!
 
 > [!TIP]
-> Try to make an issue's goal and acceptance criteria clear. Also, breaking down large tasks into shorter ones provides more opportunity for feedback!
+> Tente deixar o objetivo e os critérios de aceitação de uma issue claros. Além disso, dividir tarefas grandes em tarefas menores oferece mais oportunidades de feedback!
 
-1. Return to your [exercise repository](<(https://github.com/{{full_repo_name}})>).
+1. Volte para o [repositório do exercício](<(https://github.com/{{full_repo_name}})>).
 
-1. In the top navigation, select the **Issues** tab.
+1. Na navegação superior, selecione a aba **Issues**.
 
-1. Above the list, on the top right, click the **New Issue** button.
+1. Acima da lista, no canto superior direito, clique no botão **Nova Issue**.
 
-1. Set the **Title** to:
-
-   ```md
-   Missing Activity: Manga Maniacs
-   ```
-
-   Enter the below text as description, and click the **Create** button.
+1. Defina o **Título** como:
 
    ```md
-   The manga club was recently announced and is naturally missing from the website. Please add it.
-
-   Here are the details:
-
-   Description: Explore the fantastic stories of the most interesting characters from Japanese Manga (graphic novels).
-
-   Schedule: Tuesdays at 7pm
-   Max attendance: 15 people
+   Atividade Ausente: Manga Maniacs
    ```
 
-1. In the top right, click on the **Assignees** area and select **Copilot**.
+   Insira o texto abaixo como descrição e clique no botão **Criar**.
+
+   ```md
+   O clube de mangá foi recentemente anunciado e, naturalmente, está faltando no site. Por favor, adicione-o.
+
+   Aqui estão os detalhes:
+
+   Descrição: Explore as histórias fantásticas dos personagens mais interessantes dos Mangás japoneses (romances gráficos).
+
+   Horário: Terças-feiras às 19h
+   Máximo de participantes: 15 pessoas
+   ```
+
+1. No canto superior direito, clique na área **Atribuídos a** e selecione **Copilot**.
 
    <img width="350" src="https://github.com/user-attachments/assets/444f9432-17c3-4466-bb8e-aa4e44238130" />
 
-1. At the bottom, click the **Create** button. After a moment, you will notice:
+1. Na parte inferior, clique no botão **Criar**. Após um momento, você notará:
 
-   - The issue will have an `👀` reaction to show Copilot is reading the issue.
-   - The activity log shows you assigned the issue to Copilot.
-   - The issue log includes a linked pull request.
+   - A issue terá uma reação `👀` para mostrar que o Copilot está lendo a issue.
+   - O registro de atividades mostra que você atribuiu a issue ao Copilot.
+   - O registro de issues inclui um pull request vinculado.
 
    <img width="350" src="https://github.com/user-attachments/assets/40245540-e717-43b3-b2be-90f25cc494d0" />
 
-1. With the issue assigned, Mona should be busy checking your work. Give her a moment to share the next steps.
+1. Com a issue atribuída, Mona deve estar ocupada verificando seu trabalho. Dê a ela um momento para compartilhar os próximos passos.
 
 <details>
-   <summary>Having trouble? 🤷</summary><br/>
+   <summary>Tendo problemas? 🤷</summary><br/>
 
-If you don't get feedback, here are some things to check:
+Se você não receber feedback, aqui estão algumas coisas para verificar:
 
-- Make sure you assigned the correct issue. If you practice on other issues, they will be ignored.
+- Certifique-se de que você atribuiu a issue correta. Se você praticar em outras issues, elas serão ignoradas.
 
 </details>
