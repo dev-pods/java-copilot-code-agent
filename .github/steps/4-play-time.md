@@ -1,59 +1,59 @@
-## Step 4: Play time! 🤾 🏄
 
-Now, with Copilot's workspace prepared, let's work on some more complex issues to make the Extra curricular Activities website even better! Let's see what our new coding agent can do!
+## Etapa 4: Hora de praticar! � 🏄
 
-Let's try the following:
+Agora, com o ambiente do Copilot preparado, vamos trabalhar em issues mais complexas para deixar o site de Atividades Extracurriculares ainda melhor! Vamos ver do que nosso novo agente de código é capaz!
 
-1. Add issue templates
-1. Make the interface prettier.
-1. Add filters.
+Vamos tentar o seguinte:
 
-### ⌨️ Activity: Add issue templates for repeating tasks
+1. Adicionar templates de issues
+1. Deixar a interface mais bonita
+1. Adicionar filtros
 
-Adding some templates should allow any teacher to easily ask Copilot to handle common tasks. In fact, let's have Copilot suggest the templates, making sure to use best practices about collecting the right amount of context. We can always adjust them later if needed!
+### ⌨️ Atividade: Adicione templates de issues para tarefas recorrentes
 
-1. In the top navigation, select the **Issues** tab.
+Adicionar alguns templates permitirá que qualquer professor solicite facilmente ao Copilot que realize tarefas comuns. Na verdade, vamos pedir para o Copilot sugerir os templates, garantindo boas práticas para coletar o contexto certo. Podemos ajustá-los depois, se necessário!
 
-1. Find the open issue titled `Simplify Change requests for teachers`.
+1. No menu superior, selecione a aba **Issues**.
 
-1. Familiarize yourself with the issue, **Assign it to Copilot**, and switch to the created pull request.
+1. Encontre a issue aberta chamada `Simplificar solicitações de mudança para professores`.
 
-1. Scroll down and click the **View Session** button to watch Copilot's live progress. Alternately, go take a quick break. ☕️
+1. Leia a issue, **atribua ao Copilot** e vá para o pull request criado.
 
-1. (optional) Modify the templates Copilot provided.
+1. Role a página e clique em **View Session** para acompanhar o progresso ao vivo do Copilot. Ou, se preferir, faça uma pausa para um café ☕️.
 
-1. When Copilot session is finished, click the **Ready for Review** button to change the Copilot's pull request draft status.
+1. (opcional) Modifique os templates sugeridos pelo Copilot.
 
-1. Merge the results. Wow, that was easy! Right?! 🥹
+1. Quando o Copilot terminar, clique em **Ready for Review** para mudar o status do pull request.
 
-### ⌨️ Activity: Try implementing 2 issues simultaneously 🤯
+1. Faça o merge dos resultados. Fácil, não é?! 🥹
 
-1. In the top navigation, select the **Issues** tab.
+### ⌨️ Atividade: Tente implementar 2 issues ao mesmo tempo 🤯
 
-1. Find the the following 2 issues and open each in a new tab.
+1. No menu superior, selecione a aba **Issues**.
 
-   - `Difficulty Tracks`
+1. Encontre as seguintes 2 issues e abra cada uma em uma nova aba:
 
-   - `Outdated Docs`
+   - `Trilhas de Dificuldade`
+   - `Documentação Desatualizada`
 
-1. With both tabs open, assign both to Copilot simultaneously.
+1. Com ambas as abas abertas, atribua as duas ao Copilot simultaneamente.
 
-1. In both, navigate to the created pull request, scroll down, and click the **View Session** button to watch Copilot's live progress. Alternately, go take a quick break (again!). ☕️
+1. Em cada uma, vá para o pull request criado, role a página e clique em **View Session** para acompanhar o progresso ao vivo do Copilot. Ou faça outra pausa para um café ☕️.
 
-1. When they are done, change both from draft mode and then merge them. 😍
+1. Quando terminar, mude ambas de rascunho para pronto e faça o merge. 😍
 
-1. Nice work! With at least 1 pull request merged, Mona should be checking your work and preparing your final review.
+1. Muito bom! Com pelo menos 1 pull request mesclado, a Mona deve revisar seu trabalho e preparar a avaliação final.
 
-> [!IMPORTANT]
-> Working on multiple issues in parallel is an art-form. 🎨
-> Make sure you keep them independant to avoid merge conflicts! 😱
+> [!IMPORTANTE]
+> Trabalhar em múltiplas issues em paralelo é uma arte. 🎨
+> Mantenha-as independentes para evitar conflitos de merge! 😱
 
-### ⌨️ (optional) Activity: Try using the issue templates
+### ⌨️ (opcional) Atividade: Experimente usar os templates de issue
 
-1. In the top navigation, select the **Issues** tab.
+1. No menu superior, selecione a aba **Issues**.
 
-1. In the top right, click the **New issue** button to show the templates.
+1. No canto superior direito, clique em **New issue** para ver os templates.
 
    <img width="400" src="https://github.com/user-attachments/assets/a4864ccf-79f1-4990-991c-acc6088fded6"/>
 
-1. Role play as a teacher. Describe a potential new feature, bug, or activity.
+1. Faça o papel de um professor. Descreva uma nova funcionalidade, bug ou atividade que gostaria de ver.

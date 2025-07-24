@@ -1,63 +1,63 @@
-# Development Guide
+# Guia de Desenvolvimento
 
-## Initial Setup
+## Configuração Inicial
 
-This project is best developed using GitHub Codespaces, which provides a consistent development environment with all the necessary tools pre-configured.
+Este projeto é melhor desenvolvido usando o GitHub Codespaces, que fornece um ambiente de desenvolvimento consistente com todas as ferramentas necessárias pré-configuradas.
 
-### Setting up your development environment
+### Configurando seu ambiente de desenvolvimento
 
-1. Open the repository in a codespace
-2. Wait for the container to finish building and installing dependencies
-3. Install Python dependencies by running:
+1. Abra o repositório em um Codespace
+2. Aguarde o container terminar de construir e instalar as dependências
+3. Instale as dependências do Python executando:
 
    ```bash
    python -m pip install -r requirements.txt
    ```
 
-### Dependencies
+### Dependências
 
-The project requires the following Python packages:
+O projeto requer os seguintes pacotes Python:
 
-- FastAPI - Modern web framework for building APIs
-- Uvicorn - ASGI server implementation for running the FastAPI application
+- FastAPI - Framework moderno para construção de APIs
+- Uvicorn - Servidor ASGI para rodar a aplicação FastAPI
 
-These dependencies will be installed when you run `pip install -r requirements.txt`
+Essas dependências serão instaladas ao rodar `pip install -r requirements.txt`
 
-## Debugging
+## Depuração
 
-### Running the website locally
+### Executando o site localmente
 
-1. From VS Code's Run and Debug view (Ctrl+Shift+D), select "Launch Mergington WebApp" from the launch configuration dropdown
-2. Press F5 or click the green play button to start debugging
-3. The website will be available at `http://localhost:8000`
-4. The API documentation will be available at `http://localhost:8000/docs`
+1. No VS Code, acesse a visualização "Run and Debug" (Ctrl+Shift+D) e selecione "Launch Mergington WebApp" na lista de configurações
+2. Pressione F5 ou clique no botão verde de play para iniciar a depuração
+3. O site estará disponível em `http://localhost:8000`
+4. A documentação da API estará disponível em `http://localhost:8000/docs`
 
-### Debugging tips
+### Dicas de depuração
 
-- FastAPI's auto-reload feature will automatically restart the server when you make code changes
-- Use the interactive API documentation at `/docs` to test your endpoints
+- O recurso de auto-reload do FastAPI reiniciará automaticamente o servidor ao fazer alterações no código
+- Use a documentação interativa da API em `/docs` para testar seus endpoints
 
-## Getting Started
+## Primeiros Passos
 
-1. Install the dependencies:
+1. Instale as dependências:
 
    ```bash
    pip install fastapi uvicorn
    ```
 
-2. Run the application:
+2. Execute a aplicação:
 
    ```bash
    python app.py
    ```
 
-3. Open your browser and go to:
-   - API documentation: http://localhost:8000/docs
-   - Alternative documentation: http://localhost:8000/redoc
+3. Abra seu navegador e acesse:
+   - Documentação da API: http://localhost:8000/docs
+   - Documentação alternativa: http://localhost:8000/redoc
 
-## Usage
+## Uso
 
-### API Endpoints
+### Endpoints da API
 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |

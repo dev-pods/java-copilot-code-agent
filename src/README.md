@@ -1,12 +1,12 @@
-# Mergington High School Activities
+# Atividades Extracurriculares da Escola Mergington
 
-A super simple website application that allows students to view and sign up for extracurricular activities.
+Uma aplicação web super simples que permite aos alunos visualizar e se inscrever em atividades extracurriculares.
 
-## Features
+## Funcionalidades
 
-- View all available extracurricular activities
-- Sign up for activities
+- Visualizar todas as atividades extracurriculares disponíveis
+- Inscrever-se em atividades
 
-## Development Guide
+## Guia de Desenvolvimento
 
-For detailed setup and development instructions, please refer to our [Development Guide](../docs/how-to-develop.md).
+Para instruções detalhadas de configuração e desenvolvimento, consulte nosso [Guia de Desenvolvimento](../docs/how-to-develop.md).

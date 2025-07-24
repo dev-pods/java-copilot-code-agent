@@ -1,39 +1,40 @@
-## Step 1: Enable Copilot coding agent
 
-In the [Getting Started with GitHub Copilot](/skills/getting-started-with-github-copilot) exercise, we learned how to use Copilot in our code editor to make major upgrades to the Mergington Extracurricular Activities site. 🎻 ⚽️ ♟️
+## Etapa 1: Habilite o agente de código Copilot
 
-In fact, the site has become a regular school tool now. And, although you like that attention, you just realized a problem! You are about to go on sabbatical next semester!
+No exercício [Primeiros Passos com o GitHub Copilot](/skills/getting-started-with-github-copilot), aprendemos como usar o Copilot no editor de código para fazer grandes melhorias no site de Atividades Extracurriculares da Escola Mergington. 🎻 ⚽️ ♟️
 
-After some discussion with the principal, he has accepted that new features will be postponed, but... he is worried. They need to at least have _something_ for handling simple changes while you are away.
+Na verdade, o site se tornou uma ferramenta regular da escola. E, embora você goste dessa atenção, percebeu um problema! Você está prestes a sair de licença no próximo semestre!
 
-Let's set our teachers up for success by enrolling Copilot (in our school) to handle updates while we are away.
+Após conversar com a direção, eles aceitaram que novas funcionalidades podem esperar, mas... ficaram preocupados. É preciso ter _algo_ para lidar com pequenas mudanças enquanto você estiver ausente.
 
-<img width="600" alt="screenshot of Mergington High School WebApp" src="https://github.com/user-attachments/assets/6f5c59ab-398b-4fb0-8efd-0aa7b72fef97" />
+Vamos preparar os professores para o sucesso, cadastrando o Copilot (na nossa escola) para cuidar das atualizações enquanto estivermos fora.
 
-### Copilot is now your coding agent!
+<img width="600" alt="screenshot do WebApp da Escola Mergington" src="https://github.com/user-attachments/assets/6f5c59ab-398b-4fb0-8efd-0aa7b72fef97" />
 
-In previous exercises, we used Copilot **chat**, **edits** and **agent** mode. While those were super helpful, **Copilot coding agent** takes this to the next level by operating entirely on GitHub. No code editor required! 😎
+### O Copilot agora é seu agente de código!
 
-| Feature           | Copilot in the editor         | Copilot coding agent     |
+Em exercícios anteriores, usamos o Copilot em **chat**, **edições** e modo **agente**. Embora esses modos sejam úteis, o **agente de código Copilot** leva isso a outro nível, operando totalmente pelo GitHub. Não precisa de editor de código! 😎
+
+| Recurso           | Copilot no editor             | Agente de código Copilot |
 | ----------------- | ----------------------------- | ------------------------ |
-| **Interface**     | Your code editor              | Issues and Pull Requests |
-| **Work Scope**    | Local files                   | Repository               |
-| **Activation**    | Inline code suggestions, chat | Issue assignment         |
-| **Customization** | Custom instructions           | Custom instructions      |
-| **MCP Support**   | Yes                           | Yes                      |
+| **Interface**     | Seu editor de código          | Issues e Pull Requests   |
+| **Escopo**        | Arquivos locais               | Repositório              |
+| **Ativação**      | Sugestões inline, chat        | Atribuição de issue      |
+| **Customização**  | Instruções personalizadas     | Instruções personalizadas|
+| **Suporte MCP**   | Sim                          | Sim                      |
 | **Vibe Coding**   | 😎                            | 😎                       |
 
-### How does it work?
+### Como funciona?
 
-From the contributor perspective, the flow is very similar to a normal workflow.
+Do ponto de vista do colaborador, o fluxo é muito parecido com o de um projeto normal.
 
-1. A contributor with **write access** selects an issue and assigns it to Copilot (instead of themselves).
-2. Copilot creates a branch and pull request.
-3. Copilot works on the branch in an Actions workflow and provides updates via the pull request conversation tab.
-4. When Copilot finishes the issue, the assigner is requested to review.
-5. Assigner submits a review, adds comments, or approves.
-6. If feedback is provide, Copilot continues working to implement it.
-7. The requester repeats above steps until satisfied and then merges.
+1. Um colaborador com **acesso de escrita** seleciona uma issue e a atribui ao Copilot (em vez de si mesmo).
+2. O Copilot cria um branch e um pull request.
+3. O Copilot trabalha no branch em um workflow do Actions e fornece atualizações na aba de conversas do pull request.
+4. Quando o Copilot termina a issue, quem atribuiu é solicitado a revisar.
+5. O responsável faz a revisão, adiciona comentários ou aprova.
+6. Se houver feedback, o Copilot continua trabalhando para implementar as sugestões.
+7. O solicitante repete os passos acima até ficar satisfeito e então faz o merge.
 
 ```mermaid
 flowchart LR
