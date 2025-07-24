@@ -1,63 +1,63 @@
-## Step 3: Preparing Copilot's environment
+## Etapa 3: Preparando o ambiente do Copilot
 
-Let's add some information about the school, roles to assume, and typical tasks the teachers request and a pre-configured development environment to make it faster and more reliable (so Jessica in IT doesn't ask about increased Actions minutes usage).
+Vamos adicionar informações sobre a escola, papéis a serem assumidos, tarefas típicas dos professores e um ambiente de desenvolvimento pré-configurado para tornar tudo mais rápido e confiável (assim a equipe de TI não se preocupa com o uso de minutos do Actions).
 
-- **copilot instructions** - Provide project specific context for copilot before considering the issue.
-  - Provide business considerations for developing the project.
-  - Provide roles to guide Copilot.
-  - Provide useful commands for common tasks.
-- **copilot setup steps** - Customize the development environment in advance to make sessions faster.
-  - Pre-install useful tools for Copilot.
-  - Reducing errors from Copilot installing incorrect versions.
-- **environment** - Use repository environments for configurations.
-  - Provide variables to adjust deployments for different environments.
-  - Provide secrets to access additional resources.
+- **instruções do copilot** – Forneça contexto específico do projeto para o Copilot antes de considerar a issue.
+  - Inclua considerações de negócio para o desenvolvimento do projeto.
+  - Defina papéis para orientar o Copilot.
+  - Adicione comandos úteis para tarefas comuns.
+- **passos de configuração do copilot** – Customize o ambiente de desenvolvimento antecipadamente para tornar as sessões mais rápidas.
+  - Pré-instale ferramentas úteis para o Copilot.
+  - Reduza erros de instalação de versões incorretas.
+- **ambiente** – Use ambientes do repositório para configurações.
+  - Forneça variáveis para ajustar deploys em diferentes ambientes.
+  - Adicione segredos para acessar recursos adicionais.
 
-> [!TIP]
-> You can also [enable a Model Context Protocal (MCP) server](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/extending-copilot-coding-agent-with-model-context-protocol) for Copilot to provide even more functionality!
+> [!DICA]
+> Você também pode [habilitar um servidor Model Context Protocol (MCP)](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/extending-copilot-coding-agent-with-model-context-protocol) para dar ainda mais funcionalidades ao Copilot!
 
-### ⌨️ Activity: Create instructions to guide Copilot
+### ⌨️ Atividade: Crie instruções para guiar o Copilot
 
-1. In the top navigation, select the **Code** tab.
+1. No menu superior, selecione a aba **Code**.
 
-1. Create a new branch with the name `prepare-environment`.
+1. Crie um novo branch chamado `prepare-environment`.
 
-   <img width="250" alt="image" src="https://github.com/user-attachments/assets/c48deded-4214-4edd-9a50-d1368bfb12e8" />
+   <img width="250" alt="imagem" src="https://github.com/user-attachments/assets/c48deded-4214-4edd-9a50-d1368bfb12e8" />
 
-1. Navigate to and open the `.github/copilot-instructions.md` file for editing.
+1. Navegue até o arquivo `.github/copilot-instructions.md` e edite-o.
 
-1. Replace the placeholder text with a link to the development guide.
-
-   ```md
-   ## Development Environment
-
-   For detailed setup and development instructions, please refer to our [Development Guide](../docs/how-to-develop.md).
-   ```
-
-1. Add some additional information about the school and teachers to help Copilot interact more naturally.
+1. Substitua o texto de exemplo por um link para o guia de desenvolvimento.
 
    ```md
-   ### User Interaction
+   ## Ambiente de Desenvolvimento
 
-   Consider the following when communicating with the staff.
-
-   - The staff is not technical. Explain in simple terms as much as possible and avoid software jargon.
-   - Any new code must be easy to maintain and understand, without significant coding experience.
-
-   ## Program architecture
-
-   - The website users are the students and teachers. Make sure the user experience is simple.
-   - Do not make additional apps or services.
-   - Do not make command line tools.
-   - Do not create a long single file application. Always use an easy-to-understand directory structure.
-   - Only use HTML, CSS, Javascript, and Python. No other languages.
+   Para instruções detalhadas de configuração e desenvolvimento, consulte nosso [Guia de Desenvolvimento](../docs/how-to-develop.md).
    ```
 
-   > 💡 Tip: You can add more details. Check out the `copilot-instructions-ext.md` file for ideas.
+1. Adicione informações extras sobre a escola e os professores para ajudar o Copilot a interagir de forma mais natural.
 
-1. When finished, **commit your changes** to the `prepare-environment` branch.
+   ```md
+   ### Interação com Usuários
 
-### ⌨️ Activity: Prepare the coding environment for copilot
+   Considere o seguinte ao se comunicar com a equipe:
+
+   - Os professores não são técnicos. Explique de forma simples e evite jargões de software.
+   - Qualquer novo código deve ser fácil de manter e entender, mesmo sem experiência em programação.
+
+   ## Arquitetura do Programa
+
+   - Os usuários do site são alunos e professores. Garanta uma experiência simples.
+   - Não crie apps ou serviços adicionais.
+   - Não crie ferramentas de linha de comando.
+   - Não faça uma aplicação longa em um único arquivo. Sempre use uma estrutura de diretórios fácil de entender.
+   - Use apenas HTML, CSS, Javascript e Python. Não utilize outras linguagens.
+   ```
+
+   > 💡 Dica: Você pode adicionar mais detalhes. Veja o arquivo `copilot-instructions-ext.md` para ideias.
+
+1. Ao terminar, **faça commit das alterações** no branch `prepare-environment`.
+
+### ⌨️ Atividade: Prepare o ambiente de codificação para o Copilot
 
 Customizing Copilot's development environment and adjusting [permissions](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/controlling-permissions-for-github_token) is done with a unique [GitHub Actions](https://github.com/features/actions) workflow. For all configuration options, see the [pre-installing dependencies for Copilot](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/customizing-copilot-coding-agents-development-environment#pre-installing-tools-or-dependencies-in-copilots-environment) documentation.
 

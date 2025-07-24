@@ -1,63 +1,63 @@
-## Step 2: Collaborate with Copilot
+## Etapa 2: Colabore com o Copilot
 
-When Copilot creates a pull request in which you'll find:
+Quando o Copilot cria um pull request, você encontrará:
 
-- **Pull Request Description** - Copilot will keep a concise overview of its goal and implementation.
-- **Timeline** - Copilot will provide high-level notes about starting working sessions and commits.
-- **Session History** - A detailed log of the steps Copilot took to implement the issue.
+- **Descrição do Pull Request** – O Copilot mantém um resumo conciso do objetivo e da implementação.
+- **Linha do tempo** – O Copilot fornece notas de alto nível sobre sessões de trabalho e commits.
+- **Histórico de Sessões** – Um registro detalhado dos passos que o Copilot seguiu para implementar a issue.
 
-You can provide feedback to Copilot the same way you would a colleague. These actions trigger Copilot to begin another working session.
+Você pode dar feedback ao Copilot da mesma forma que faria com um colega. Essas ações fazem o Copilot iniciar uma nova sessão de trabalho.
 
-- **Comments** - Add a comment on the pull request conversation.
-- **Reviews** - Combine multiple comments in a pull request review.
-- **@ mentions** - You can tag Copilot in a comment just like a coworker.
+- **Comentários** – Adicione um comentário na conversa do pull request.
+- **Revisões** – Combine vários comentários em uma revisão de pull request.
+- **@ menções** – Você pode marcar o Copilot em um comentário como faria com um colega.
 
-#### Important Considerations
+#### Considerações importantes
 
-- Copilot's work is done on a branch with the convention `copilot/*` and does not have access to other branches.
-- Copilot cannot trigger Actions workflows.
-  - Workflows triggered on pull requests require human approval before running.
-- Rulesets and similar protections are still enforced.
+- O trabalho do Copilot é feito em um branch com o padrão `copilot/*` e ele não tem acesso a outros branches.
+- O Copilot não pode acionar workflows do Actions.
+  - Workflows disparados em pull requests precisam de aprovação humana para rodar.
+- Regras e proteções do repositório continuam valendo normalmente.
 
-> [!TIP]
-> All work created by Copilot is committed with the assignee as a co-contributor (keeping your contribution graph safe). 💕
+> [!DICA]
+> Todo trabalho criado pelo Copilot é commitado com o responsável como co-contribuidor (mantendo seu gráfico de contribuições seguro). 💕
 
-### ⌨️ Activity: View Copilot's progress
+### ⌨️ Atividade: Veja o progresso do Copilot
 
-1. In the issue, click on the reference link to the pull request. Alternately, use the **Pull Requests** tab in the top navigation.
+1. Na issue, clique no link de referência para o pull request. Alternativamente, use a aba **Pull Requests** no topo.
 
-1. Watch in real-time as Copilot updates the pull request description. It will be progresses through 3 phases:
+1. Veja em tempo real o Copilot atualizando a descrição do pull request. Ele passa por 3 fases:
 
    <details>
-      <summary>1. When starting, Copilot provides an initial copy of the issue. <b>[show image]</b></summary>
-      <img width="500" alt="image" src="https://github.com/user-attachments/assets/967dbea0-01c2-4531-9bce-5a055d3dad25" />
+      <summary>1. Ao iniciar, o Copilot copia a issue inicial. <b>[mostrar imagem]</b></summary>
+      <img width="500" alt="imagem" src="https://github.com/user-attachments/assets/967dbea0-01c2-4531-9bce-5a055d3dad25" />
    </details>
 
    <details>
-      <summary>2. After planning, Copilot provides a set of action items. <b>[show image]</b></summary>
-      <img width="500" alt="image" src="https://github.com/user-attachments/assets/acadb796-6545-4b6d-b2b3-9a00ea1744a2" />
+      <summary>2. Após o planejamento, o Copilot fornece uma lista de ações. <b>[mostrar imagem]</b></summary>
+      <img width="500" alt="imagem" src="https://github.com/user-attachments/assets/acadb796-6545-4b6d-b2b3-9a00ea1744a2" />
    </details>
 
    <details>
-      <summary>3. After finishing, Copilot provides a summary. <b>[show image]</b></summary>
-      <img width="500" alt="image" src="https://github.com/user-attachments/assets/61204574-0262-4c2f-af4b-09b284f31b90" />
+      <summary>3. Ao finalizar, o Copilot fornece um resumo. <b>[mostrar imagem]</b></summary>
+      <img width="500" alt="imagem" src="https://github.com/user-attachments/assets/61204574-0262-4c2f-af4b-09b284f31b90" />
    </details>
 
-1. Scroll down slightly to view the timeline and high-level notes provided by Copilot. Click the **View session** button.
+1. Role a página para ver a linha do tempo e as notas do Copilot. Clique no botão **View session**.
 
    <img width="500" src="https://github.com/user-attachments/assets/088260e6-bae0-40af-8186-864eb3e7b8a2" />
 
-1. The new page shows a journal of Copilot's work. The left navigation is a list of each working session.
+1. A nova página mostra um diário do trabalho do Copilot. A navegação à esquerda lista cada sessão de trabalho.
 
    <img width="500" src="https://github.com/user-attachments/assets/2c80fa91-1123-4813-a801-42af368240b9" />
 
-1. If necessary, wait for Copilot to finish working on the changes.
+1. Se necessário, aguarde o Copilot terminar as alterações.
 
-> [!TIP]
-> You can use the **edited** dropdown to view the pull request description change history.
+> [!DICA]
+> Você pode usar o menu **edited** para ver o histórico de alterações da descrição do pull request.
 >
 > <details>
-> <summary>Show image</summary>
+> <summary>Mostrar imagem</summary>
 > <img width="500" alt="image" src="https://github.com/user-attachments/assets/cb88a67c-e42f-463c-88cd-b23a391b28a0" />
 > </details>
 

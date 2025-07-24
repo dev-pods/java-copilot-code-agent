@@ -1,26 +1,26 @@
-## Review
+## Revisão Final
 
-_Congratulations, you've completed this exercise and learned a lot about GitHub Copilot coding agent!_
+_Parabéns, você concluiu este exercício e aprendeu muito sobre o agente de código GitHub Copilot!_
 
-<img src="https://octodex.github.com/images/jetpacktocat.png" alt=celebrate width=200 align=right>
+<img src="https://octodex.github.com/images/jetpacktocat.png" alt=celebrar width=200 align=right>
 
-Here's a recap of your accomplishments:
+Veja um resumo das suas conquistas:
 
-- Learned the capabilities and usage of Copilot coding agent.
-- Assigned an issue to Copilot.
-- Inspected the logic Copilot used for implementing your issue.
-- Provided feedback for Copilot to refine the implementation.
-- Used Copilot to work in parallel on multiple issues.
+- Aprendeu as capacidades e o uso do agente de código Copilot.
+- Atribuiu uma issue ao Copilot.
+- Inspecionou a lógica usada pelo Copilot para implementar sua issue.
+- Deu feedback para o Copilot aprimorar a implementação.
+- Usou o Copilot para trabalhar em paralelo em múltiplas issues.
 
-### What's next?
+### E agora?
 
-- Learn about the [best practices with Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/best-practices-for-using-copilot-coding-agent) for defining good issues.
-- Adjust Copilots environment to [enable Model Context Protocal](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/extending-copilot-coding-agent-with-model-context-protocol) to give Copilot more tools.
-  - Never used Model Context Protocol? Try the [Integrate MCP with Copilot](https://github.com/skills/integrate-mcp-with-copilot) GitHub Skills Exercise
+- Aprenda sobre as [melhores práticas com o agente Copilot](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/best-practices-for-using-copilot-coding-agent) para definir boas issues.
+- Ajuste o ambiente do Copilot para [habilitar o Model Context Protocol](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/extending-copilot-coding-agent-with-model-context-protocol) e dar mais ferramentas ao Copilot.
+  - Nunca usou o Model Context Protocol? Experimente o exercício [Integrar MCP com Copilot](https://github.com/skills/integrate-mcp-with-copilot) do GitHub Skills
 
-Check out these resources to learn more about GitHub Copilot coding agent :
+Confira estes recursos para aprender mais sobre o agente de código GitHub Copilot:
 
-- Are you not getting the responses you want from Copilot? [Learn prompt engineering](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat)
-- Read practices to for [responsible use of Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/responsible-use-of-copilot-coding-agent).
-- See what other features are available [GitHub Copilot Features](https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features).
-- Take a look at the [GitHub Copilot Documentation](https://docs.github.com/en/copilot).
+- Não está recebendo as respostas que deseja do Copilot? [Aprenda engenharia de prompts](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat)
+- Leia práticas para o [uso responsável do agente Copilot](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/responsible-use-of-copilot-coding-agent).
+- Veja outros recursos disponíveis em [Funcionalidades do GitHub Copilot](https://docs.github.com/en/copilot/about-github-copilot/github-copilot-features).
+- Consulte a [Documentação do GitHub Copilot](https://docs.github.com/en/copilot).
