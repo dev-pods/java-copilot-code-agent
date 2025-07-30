@@ -3,6 +3,10 @@
 # Set up Java development environment
 echo "Setting up Java development environment..."
 
+# Prepare MongoDB Dev DB
+chmod +x ./.devcontainer/installMongoDB.sh
+./.devcontainer/installMongoDB.sh
+
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
 echo 'export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64' >> ~/.bashrc
