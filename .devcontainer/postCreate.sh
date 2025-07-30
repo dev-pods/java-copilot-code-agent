@@ -3,17 +3,6 @@
 # Set up Java development environment
 echo "Setting up Java development environment..."
 
-# Install Maven if not present
-if ! command -v mvn &> /dev/null; then
-    echo "Installing Maven..."
-    sudo apt-get update
-    sudo apt-get install -y maven
-fi
-
-# Install MongoDB tools (optional)
-echo "Setting up MongoDB tools..."
-sudo apt-get install -y mongodb-clients || echo "MongoDB clients installation skipped"
-
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
 echo 'export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64' >> ~/.bashrc
