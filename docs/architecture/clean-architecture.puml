@@ -1,0 +1,72 @@
+@startuml clean-architecture
+title Clean Architecture - High School Management System
+
+package "Presentation Layer" {
+    [Activity Controller]
+    [Auth Controller]
+    [Static Controller]
+    [Mappers]
+}
+
+package "Application Layer" {
+    [Activity Use Case]
+    [Authentication Use Case]
+    [Student Registration Use Case]
+    [DTOs]
+}
+
+package "Domain Layer" {
+    [Activity Entity]
+    [Teacher Entity]
+    [Email Value Object]
+    [Schedule Details Value Object]
+    [Repository Interfaces]
+    [Domain Services]
+}
+
+package "Infrastructure Layer" {
+    [MongoDB Repositories]
+    [Security Configuration]
+    [Database Configuration]
+    [Password Encoder]
+}
+
+database "MongoDB" {
+    [activities]
+    [teachers]
+}
+
+[Activity Controller] --> [Activity Use Case] : uses
+[Activity Controller] --> [Student Registration Use Case] : uses
+[Auth Controller] --> [Authentication Use Case] : uses
+
+[Activity Use Case] --> [Activity Entity] : uses
+[Authentication Use Case] --> [Teacher Entity] : uses
+[Student Registration Use Case] --> [Activity Entity] : uses
+[Student Registration Use Case] --> [Teacher Entity] : uses
+
+[Activity Use Case] --> [Repository Interfaces] : depends on
+[Authentication Use Case] --> [Repository Interfaces] : depends on
+[Student Registration Use Case] --> [Repository Interfaces] : depends on
+
+[MongoDB Repositories] --> [Repository Interfaces] : implements
+[MongoDB Repositories] --> [activities] : persists to
+[MongoDB Repositories] --> [teachers] : persists to
+
+[Activity Entity] --> [Email Value Object] : uses
+[Activity Entity] --> [Schedule Details Value Object] : uses
+
+note right of [Repository Interfaces]
+    Dependency Inversion:
+    Application depends on
+    abstractions, not
+    concrete implementations
+end note
+
+note bottom of [Domain Layer]
+    Core business logic
+    No external dependencies
+    Framework independent
+end note
+
+@enduml

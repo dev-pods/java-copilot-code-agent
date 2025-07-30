@@ -1,0 +1,17 @@
+@startuml system-context
+!include <C4/C4_Context>
+
+title System Context Diagram - High School Management System
+
+Person(teacher, "Teacher", "School staff member who manages student activities")
+Person(student, "Student", "Student who wants to join extracurricular activities")
+
+System(schoolSystem, "School Management System", "Manages extracurricular activities and student registrations")
+
+System_Ext(database, "MongoDB Database", "Stores activities, teachers, and student registrations")
+
+Rel(teacher, schoolSystem, "Manages activities and student registrations", "HTTPS")
+Rel(student, schoolSystem, "Views available activities", "HTTPS")
+Rel(schoolSystem, database, "Reads from and writes to", "MongoDB Protocol")
+
+@enduml
