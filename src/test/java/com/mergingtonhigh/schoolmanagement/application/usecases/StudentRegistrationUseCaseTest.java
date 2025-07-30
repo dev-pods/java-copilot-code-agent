@@ -40,7 +40,7 @@ class StudentRegistrationUseCaseTest {
     
     @Test
     void shouldSignupStudentForActivitySuccessfully() {
-        // Given
+        // Arrange
         String activityName = "Chess Club";
         String email = "student@mergington.edu";
         String teacherUsername = "teacher1";
@@ -52,10 +52,10 @@ class StudentRegistrationUseCaseTest {
         when(activityRepository.findByName(activityName)).thenReturn(Optional.of(activity));
         when(activityRepository.save(any(Activity.class))).thenReturn(activity);
         
-        // When
+        // Act
         String result = useCase.signupForActivity(activityName, email, teacherUsername);
         
-        // Then
+        // Assert
         assertEquals("Signed up student@mergington.edu for Chess Club", result);
         verify(activityRepository).save(activity);
         assertTrue(activity.getParticipants().contains(email));
@@ -63,14 +63,14 @@ class StudentRegistrationUseCaseTest {
     
     @Test
     void shouldThrowExceptionWhenTeacherNotFound() {
-        // Given
+        // Arrange
         String activityName = "Chess Club";
         String email = "student@mergington.edu";
         String teacherUsername = "nonexistent";
         
         when(teacherRepository.findByUsername(teacherUsername)).thenReturn(Optional.empty());
         
-        // When & Then
+        // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> 
             useCase.signupForActivity(activityName, email, teacherUsername)
         );
@@ -81,7 +81,7 @@ class StudentRegistrationUseCaseTest {
     
     @Test
     void shouldThrowExceptionWhenActivityNotFound() {
-        // Given
+        // Arrange
         String activityName = "Nonexistent Activity";
         String email = "student@mergington.edu";
         String teacherUsername = "teacher1";
@@ -91,7 +91,7 @@ class StudentRegistrationUseCaseTest {
         when(teacherRepository.findByUsername(teacherUsername)).thenReturn(Optional.of(teacher));
         when(activityRepository.findByName(activityName)).thenReturn(Optional.empty());
         
-        // When & Then
+        // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> 
             useCase.signupForActivity(activityName, email, teacherUsername)
         );
@@ -101,7 +101,7 @@ class StudentRegistrationUseCaseTest {
     
     @Test
     void shouldUnregisterStudentFromActivitySuccessfully() {
-        // Given
+        // Arrange
         String activityName = "Chess Club";
         String email = "student@mergington.edu";
         String teacherUsername = "teacher1";
@@ -114,10 +114,10 @@ class StudentRegistrationUseCaseTest {
         when(activityRepository.findByName(activityName)).thenReturn(Optional.of(activity));
         when(activityRepository.save(any(Activity.class))).thenReturn(activity);
         
-        // When
+        // Act
         String result = useCase.unregisterFromActivity(activityName, email, teacherUsername);
         
-        // Then
+        // Assert
         assertEquals("Unregistered student@mergington.edu from Chess Club", result);
         verify(activityRepository).save(activity);
         assertFalse(activity.getParticipants().contains(email));

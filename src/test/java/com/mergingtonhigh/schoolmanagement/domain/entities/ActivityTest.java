@@ -16,14 +16,14 @@ class ActivityTest {
     
     @Test
     void shouldCreateActivityWithValidData() {
-        // Given
+        // Arrange
         ScheduleDetails schedule = new ScheduleDetails(
             List.of("Monday", "Wednesday"), 
             LocalTime.of(15, 30), 
             LocalTime.of(17, 0)
         );
         
-        // When
+        // Act
         Activity activity = new Activity(
             "Chess Club",
             "Learn chess strategies",
@@ -32,7 +32,7 @@ class ActivityTest {
             12
         );
         
-        // Then
+        // Assert
         assertEquals("Chess Club", activity.getName());
         assertEquals("Learn chess strategies", activity.getDescription());
         assertEquals(12, activity.getMaxParticipants());
@@ -42,14 +42,14 @@ class ActivityTest {
     
     @Test
     void shouldThrowExceptionWhenNameIsNull() {
-        // Given
+        // Arrange
         ScheduleDetails schedule = new ScheduleDetails(
             List.of("Monday"), 
             LocalTime.of(15, 30), 
             LocalTime.of(17, 0)
         );
         
-        // When & Then
+        // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> 
             new Activity(null, "Description", "Schedule", schedule, 12)
         );
@@ -57,26 +57,26 @@ class ActivityTest {
     
     @Test
     void shouldAddParticipantSuccessfully() {
-        // Given
+        // Arrange
         Activity activity = createTestActivity();
         Email studentEmail = new Email("student@mergington.edu");
         
-        // When
+        // Act
         activity.addParticipant(studentEmail);
         
-        // Then
+        // Assert
         assertEquals(1, activity.getCurrentParticipantCount());
         assertTrue(activity.isParticipantRegistered(studentEmail));
     }
     
     @Test
     void shouldThrowExceptionWhenAddingDuplicateParticipant() {
-        // Given
+        // Arrange
         Activity activity = createTestActivity();
         Email studentEmail = new Email("student@mergington.edu");
         activity.addParticipant(studentEmail);
         
-        // When & Then
+        // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> 
             activity.addParticipant(studentEmail)
         );
@@ -84,26 +84,26 @@ class ActivityTest {
     
     @Test
     void shouldRemoveParticipantSuccessfully() {
-        // Given
+        // Arrange
         Activity activity = createTestActivity();
         Email studentEmail = new Email("student@mergington.edu");
         activity.addParticipant(studentEmail);
         
-        // When
+        // Act
         activity.removeParticipant(studentEmail);
         
-        // Then
+        // Assert
         assertEquals(0, activity.getCurrentParticipantCount());
         assertFalse(activity.isParticipantRegistered(studentEmail));
     }
     
     @Test
     void shouldThrowExceptionWhenRemovingNonExistentParticipant() {
-        // Given
+        // Arrange
         Activity activity = createTestActivity();
         Email studentEmail = new Email("student@mergington.edu");
         
-        // When & Then
+        // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> 
             activity.removeParticipant(studentEmail)
         );
