@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "Setting up Java development environment..."
-
 # Prepare MongoDB Dev DB
 chmod +x ./.devcontainer/installMongoDB.sh
 ./.devcontainer/installMongoDB.sh
