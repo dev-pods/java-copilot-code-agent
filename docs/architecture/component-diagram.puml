@@ -1,0 +1,43 @@
+@startuml component-diagram
+!include <C4/C4_Component>
+
+title Component Diagram - Spring Boot Web Application
+
+Container_Boundary(webApp, "Spring Boot Web Application") {
+    Component(activityController, "Activity Controller", "Spring REST Controller", "Handles activity-related HTTP requests")
+    Component(authController, "Auth Controller", "Spring REST Controller", "Handles authentication requests")
+    Component(staticController, "Static Controller", "Spring Controller", "Serves static web content")
+    
+    Component(activityUseCase, "Activity Use Case", "Application Service", "Orchestrates activity business logic")
+    Component(authUseCase, "Authentication Use Case", "Application Service", "Orchestrates authentication logic")
+    Component(registrationUseCase, "Student Registration Use Case", "Application Service", "Handles student registrations")
+    
+    Component(activityEntity, "Activity Entity", "Domain Model", "Core activity business logic")
+    Component(teacherEntity, "Teacher Entity", "Domain Model", "Core teacher business logic")
+    
+    Component(activityRepo, "Activity Repository", "Data Access", "Activity data persistence")
+    Component(teacherRepo, "Teacher Repository", "Data Access", "Teacher data persistence")
+    
+    Component(securityConfig, "Security Config", "Spring Security", "Authentication and authorization")
+}
+
+ContainerDb(database, "MongoDB Database", "Document Store", "Persists all application data")
+
+Rel(activityController, activityUseCase, "Uses")
+Rel(activityController, registrationUseCase, "Uses")
+Rel(authController, authUseCase, "Uses")
+
+Rel(activityUseCase, activityEntity, "Uses")
+Rel(authUseCase, teacherEntity, "Uses")
+Rel(registrationUseCase, activityEntity, "Uses")
+Rel(registrationUseCase, teacherEntity, "Uses")
+
+Rel(activityUseCase, activityRepo, "Uses")
+Rel(authUseCase, teacherRepo, "Uses")
+Rel(registrationUseCase, activityRepo, "Uses")
+Rel(registrationUseCase, teacherRepo, "Uses")
+
+Rel(activityRepo, database, "Reads from and writes to")
+Rel(teacherRepo, database, "Reads from and writes to")
+
+@enduml

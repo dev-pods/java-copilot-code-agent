@@ -1,0 +1,20 @@
+@startuml container-diagram
+!include <C4/C4_Container>
+
+title Container Diagram - High School Management System
+
+Person(teacher, "Teacher", "School staff member")
+Person(student, "Student", "Student user")
+
+System_Boundary(schoolSystem, "School Management System") {
+    Container(webApp, "Web Application", "Spring Boot 3", "Provides REST API and serves static web content")
+    Container(frontend, "Frontend", "HTML/CSS/JavaScript", "Provides user interface for activities management")
+    ContainerDb(database, "Database", "MongoDB", "Stores activities, teachers, and registrations")
+}
+
+Rel(teacher, frontend, "Uses", "HTTPS")
+Rel(student, frontend, "Uses", "HTTPS")
+Rel(frontend, webApp, "Makes API calls to", "JSON/HTTPS")
+Rel(webApp, database, "Reads from and writes to", "MongoDB Protocol")
+
+@enduml

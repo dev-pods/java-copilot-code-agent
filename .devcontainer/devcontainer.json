@@ -1,15 +1,27 @@
 {
-  "name": "Python 3",
-  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.13",
-  "forwardPorts": [8000],
+  "name": "Java 21 Development Environment",
+  "image": "mcr.microsoft.com/vscode/devcontainers/java:21",
+  "forwardPorts": [8080],
   "postCreateCommand": "bash ./.devcontainer/postCreate.sh",
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
-        "ms-python.python",
-        "ms-python.debugpy"
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-java-debug",
+        "SonarSource.sonarlint-vscode",
+        "ms-vscode.vscode-json"
       ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "temurin",
+      "installMaven": true
     }
   }
 }
