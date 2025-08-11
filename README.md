@@ -30,7 +30,7 @@ Neste exercício, você irá:
 
 Basta copiar o exercício para sua conta, aguardar cerca de **20 segundos** para o Octocat (Mona) preparar a primeira lição e então **atualizar a página**.
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=dev-pods&template_name=copilot-code-agent&owner=%40me&name=dev-pods-copilot-code-agent&description=Exerc%C3%ADcio:+Expanda+sua+equipe+com+o+agente+de+c%C3%B3digo+)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=timetech-internal&template_name=java-copilot-code-agent&owner=%40me&name=java-copilot-code-agent&description=Exerc%C3%ADcio:+Expanda+sua+equipe+com+o+agente+de+c%C3%B3digo+)
 
 <details>
 <summary>Está com problemas? 🤷</summary><br/>
