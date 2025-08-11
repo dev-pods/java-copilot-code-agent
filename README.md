@@ -1,187 +1,52 @@
-# High School Management System - Java Edition
+# Expanda sua equipe com o agente de código Copilot
 
-A modern web application for managing extracurricular activities at Mergington High School, built with Java 21 and Spring Boot 3.
+_Deixe o agente de código Copilot resolver suas issues diretamente no GitHub. Não é necessário ambiente de desenvolvimento local._
 
-## 🚀 Technology Stack
+## Boas-vindas
 
-- **Java 21** - Latest LTS version with modern language features
-- **Spring Boot 3.3.6** - Modern Spring framework
-- **Spring Data MongoDB** - Database integration
-- **Spring Security** - Authentication and authorization
-- **Clean Architecture** - Domain-driven design principles
-- **JUnit 5 & Mockito** - Comprehensive testing
-- **Jacoco** - Test coverage reporting
-- **Maven** - Build and dependency management
-- **PlantUML** - Architecture documentation
+- **Para quem é**: Desenvolvedores de qualquer nível que desejam acelerar seu fluxo de trabalho com código.
+- **O que você vai aprender**: Como atribuir uma issue ao Copilot, revisar o trabalho do Copilot, fornecer feedback e trabalhar em múltiplas issues em paralelo.
+- **O que você vai construir**: Você dará acesso ao GitHub Copilot para este repositório, permitindo que outros professores façam alterações sem precisar programar diretamente.
+- **Pré-requisitos**:
 
-## 🏗️ Architecture
+  - Exercício: [Introdução ao GitHub](https://github.com/skills/introduction-to-github)
+  - Exercício: [Primeiros Passos com o GitHub Copilot](https://github.com/skills/getting-started-with-github-copilot)
 
-This application follows **Clean Architecture** principles with clear separation of concerns:
+- **Duração**: Este exercício leva menos de uma hora para ser concluído.
 
-```
-📦 Domain Layer (Core Business Logic)
-├── 🎯 Entities (Activity, Teacher)
-├── 💎 Value Objects (Email, ScheduleDetails)
-└── 🔌 Repository Interfaces
+Neste exercício, você irá:
 
-📦 Application Layer (Use Cases)
-├── 🎪 Use Cases (Activity, Authentication, Registration)
-└── 📋 DTOs (Data Transfer Objects)
+1. Aprender como habilitar o agente de código Copilot no seu repositório.
+1. Atribuir uma issue e acompanhar o progresso do agente.
+1. Colaborar com o agente nas alterações de código.
+1. Customizar e otimizar o ambiente de trabalho do agente.
+1. Preparar suas issues para obter melhores resultados.
 
-📦 Infrastructure Layer (External Concerns)
-├── 🗃️ MongoDB Repositories
-├── 🔐 Security Configuration
-└── ⚙️ Application Configuration
+> [!IMPORTANTE]
+> O agente de código Copilot está em **prévia pública** e gratuito com limitações até 1º de junho de 2025.  
+> Espere pequenas diferenças neste exercício conforme as funcionalidades evoluem.
 
-📦 Presentation Layer (Controllers)
-├── 🌐 REST Controllers
-└── 🔄 Entity-DTO Mappers
-```
+### Como iniciar este exercício
 
-## 📋 Features
+Basta copiar o exercício para sua conta, aguardar cerca de **20 segundos** para o Octocat (Mona) preparar a primeira lição e então **atualizar a página**.
 
-- **Activity Management**: Browse and filter extracurricular activities
-- **Student Registration**: Sign up and unregister for activities
-- **Teacher Authentication**: Secure login for teachers and administrators
-- **Schedule Filtering**: Filter activities by day and time
-- **Clean API**: RESTful endpoints with proper HTTP status codes
-- **Frontend Integration**: Serves existing HTML/CSS/JavaScript frontend
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=dev-pods&template_name=copilot-code-agent&owner=%40me&name=dev-pods-copilot-code-agent&description=Exerc%C3%ADcio:+Expanda+sua+equipe+com+o+agente+de+c%C3%B3digo+)
 
-## 🔗 API Endpoints
+<details>
+<summary>Está com problemas? 🤷</summary><br/>
 
-### Activities
-- `GET /activities` - List all activities (with optional filtering)
-- `GET /activities/days` - Get available days
-- `POST /activities/{name}/signup` - Sign up student (requires teacher auth)
-- `POST /activities/{name}/unregister` - Remove student (requires teacher auth)
+Ao copiar o exercício, recomendamos as seguintes configurações:
 
-### Authentication
-- `POST /auth/login` - Teacher login
-- `GET /auth/check-session` - Validate session
+- Para "owner", escolha sua conta pessoal ou uma organização para hospedar o repositório.
+- Recomendamos criar um repositório público, pois repositórios privados consomem minutos do Actions.
 
-## 🛠️ Development
+Se o exercício não estiver pronto em 20 segundos, verifique a aba [Actions](../../actions).
 
-### Prerequisites
-- Java 21 (Temurin distribution recommended)
-- Maven 3.9+
-- MongoDB (optional - application includes fallbacks)
+- Veja se há algum job em execução. Às vezes pode demorar um pouco mais.
+- Se a página mostrar um job com falha, por favor, abra uma issue. Parabéns, você encontrou um bug! 🐛
 
-### Quick Start
-
-1. **Clone and build**:
-   ```bash
-   git clone <repository-url>
-   cd school-management-system
-   mvn clean compile
-   ```
-
-2. **Run tests**:
-   ```bash
-   mvn test
-   ```
-
-3. **Start the application**:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-4. **Access the application**:
-   - Web interface: http://localhost:8080
-   - API documentation: http://localhost:8080/swagger-ui.html (if enabled)
-
-### Testing
-
-The project includes comprehensive unit tests:
-
-```bash
-# Run all tests
-mvn test
-
-# Generate coverage report
-mvn jacoco:report
-
-# View coverage report
-open target/site/jacoco/index.html
-```
-
-### Key Testing Features
-- **Domain Entity Tests**: Validate business logic
-- **Use Case Tests**: Mock external dependencies with Mockito
-- **Repository Tests**: Integration testing with TestContainers
-- **Coverage Reporting**: Jacoco integration
-
-## 🏫 Default Data
-
-The application initializes with sample data including:
-
-- **Activities**: Chess Club, Programming Class, Soccer Team, Art Club, and more
-- **Teachers**: Sample teacher accounts for testing
-- **Students**: Pre-registered students in activities
-
-### Default Teacher Accounts
-- Username: `mrodriguez`, Password: `art123`
-- Username: `mchen`, Password: `chess456` 
-- Username: `principal`, Password: `admin789`
-
-## 📊 Test Coverage
-
-The project maintains high test coverage with:
-- Domain entities: 100% coverage
-- Use cases: Comprehensive mocking scenarios
-- Integration points: External dependency validation
-
-## 📖 Documentation
-
-- **Architecture Diagrams**: Located in `docs/architecture/`
-- **C4 Model**: System context, container, and component diagrams
-- **PlantUML**: Generate diagrams with `mvn plantuml:generate`
-- **API Documentation**: Integrated with Spring Boot
-
-## 🔧 Configuration
-
-Key configuration options in `application.properties`:
-
-```properties
-# Server Configuration
-server.port=8080
-
-# MongoDB (optional)
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=mergington_high
-
-# Security
-spring.security.user.name=admin
-spring.security.user.password=admin123
-```
-
-## 🐳 Development Environment
-
-This project supports GitHub Codespaces with pre-configured:
-- Java 21 development environment
-- Maven build tools
-- VS Code extensions for Java development
-- MongoDB tools (optional)
-
-## 🚀 Deployment
-
-The application can be deployed using:
-- **JAR file**: `mvn clean package && java -jar target/school-management-system-*.jar`
-- **Docker**: Create Dockerfile based on `openjdk:21-jre`
-- **Cloud platforms**: Spring Boot compatible with most cloud providers
-
-## 🤝 Contributing
-
-1. Follow Clean Architecture principles
-2. Write tests for all new features
-3. Maintain test coverage above 80%
-4. Use conventional commit messages
-5. Update documentation for API changes
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+</details>
 
 ---
 
-**Built with ❤️ using Clean Architecture and modern Java practices**
+&copy; 2025 GitHub &bull; [Código de Conduta](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [Licença MIT](https://gh.io/mit)
