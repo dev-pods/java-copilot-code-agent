@@ -1,0 +1,84 @@
+# Nome do workflow - identifica o workflow no GitHub Actions
+name: "Copilot Setup Steps"
+
+#> O check abaixo será utilizado no exercicio 3 deste repositório (o agente não deve marcar automaticamente)
+# [ ] - Aprendi sobre como configurar o copilot-setup-steps.
+
+# Define quando o workflow será executado automaticamente
+# Permite execução manual através da aba "Actions" do repositório para validação e testes
+on:
+  workflow_dispatch: # Permite execução manual do workflow
+jobs:
+  # O nome do job DEVE ser 'copilot-setup-steps' para ser reconhecido pelo Copilot
+  copilot-setup-steps:
+    runs-on: ubuntu-latest # Define o sistema operacional onde o job será executado
+
+    # Define as permissões mínimas necessárias para os passos de configuração
+    # O Copilot receberá seu próprio token para suas operações
+    permissions:
+      # Permissão de leitura do conteúdo - necessária para fazer checkout do repositório
+      # Se você não fizer checkout aqui, o Copilot fará automaticamente após os passos
+      contents: read
+
+    # Lista de passos que serão executados antes do agente Copilot iniciar
+    # Se você não fizer checkout do código, o Copilot fará isso automaticamente
+    steps:
+      # Passo 1: Faz checkout (download) do código do repositório
+      - name: Checkout code
+        uses: actions/checkout@v4 # Usa a ação oficial do GitHub para checkout
+
+      # Passo 2: Configura o ambiente Java 21
+      - name: Set up Java 21
+        uses: actions/setup-java@v4 # Usa a ação oficial para configurar Java
+        with:
+          distribution: "temurin" # Usa a distribuição Eclipse Temurin do OpenJDK
+          java-version: "21" # Especifica a versão Java 21
+          cache: "maven" # Habilita cache do Maven para acelerar builds futuros
+
+      # Passo 3: Configura o banco de dados MongoDB
+      - name: Set up MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0 # Ação de terceiros para MongoDB
+        with:
+          mongodb-version: "7.0" # Versão específica do MongoDB
+          mongodb-replica-set: test-rs # Configura um replica set para desenvolvimento
+          mongodb-port: 27017 # Porta padrão do MongoDB
+
+      # Passo 4: Verifica se Java e Maven estão funcionando corretamente
+      - name: Verify Java version
+        run: |
+          java -version  # Exibe a versão do Java instalada
+          mvn -version   # Exibe a versão do Maven instalada
+
+      # Passo 5: Instala dependências e compila o projeto
+      - name: Install dependencies and compile
+        run: |
+          mvn clean compile -DskipTests  # Limpa, baixa dependências e compila sem executar testes
+        continue-on-error: true # Continua mesmo se houver erro (não falha o workflow)
+
+      # Passo 6: Baixa dependências e prepara o ambiente
+      - name: Download dependencies and warm up environment
+        run: |
+          mvn dependency:resolve  # Baixa todas as dependências do projeto
+          mvn test-compile       # Compila os testes (preparação para execução futura)
+        continue-on-error: true # Continua mesmo se houver erro
+
+      # Passo 7: Define variáveis de ambiente para desenvolvimento
+      - name: Set environment variables for development
+        run: |
+          # Ativa o perfil de desenvolvimento do Spring Boot
+          echo "SPRING_PROFILES_ACTIVE=dev" >> $GITHUB_ENV
+          # Define a variável JAVA_HOME no ambiente
+          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+
+      # Passo 8: Exibe informações do ambiente configurado
+      - name: Display environment information
+        run: |
+          # Mostra a versão do Java configurada
+          echo "Java version: $(java -version 2>&1 | head -1)"
+          # Mostra a versão do Maven configurada
+          echo "Maven version: $(mvn -version | head -1)"
+          # Mostra o perfil Spring ativo
+          echo "Spring Profile: $SPRING_PROFILES_ACTIVE"
+          # Testa a conectividade com MongoDB
+          echo "MongoDB status check..."
+          mongosh --eval "db.runCommand('ping')" || echo "MongoDB not ready yet, but will be available for Copilot"

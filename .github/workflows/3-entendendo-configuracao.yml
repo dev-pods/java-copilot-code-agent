@@ -61,13 +61,32 @@ jobs:
             let message = '';
 
             if (!changedFiles.includes('.github/copilot-instructions.md')) {
-              message = 'You need to provide instructions in .github/copilot-instructions.md file';
+              message = 'Você precisa fornecer instruções no arquivo .github/copilot-instructions.md';
               core.setOutput('STEP_MESSAGE', message);
-              core.setFailed('The .github/copilot-instructions.md file was not modified');
+              core.setFailed('O arquivo .github/copilot-instructions.md não foi modificado');
               return;
             }
 
-            message = 'Provided instructions in `.github/copilot-instructions.md`';
+            // Check if the checkbox is marked in the copilot-instructions.md file
+            const fs = require('fs');
+            try {
+              const fileContent = fs.readFileSync('.github/copilot-instructions.md', 'utf8');
+              const checkboxText = '[X] - Eu entendi o conteúdo deste arquivo.';
+              
+              if (!fileContent.includes(checkboxText)) {
+                message = 'Você precisa marcar a caixa de seleção "[X] - Aprendi sobre como configurar o copilot-instructions." no arquivo copilot-instructions.md';
+                core.setOutput('STEP_MESSAGE', message);
+                core.setFailed('A caixa de seleção não foi marcada no copilot-instructions.md');
+                return;
+              }
+            } catch (error) {
+              message = 'Erro ao ler o arquivo copilot-instructions.md: ' + error.message;
+              core.setOutput('STEP_MESSAGE', message);
+              core.setFailed('Não foi possível ler o arquivo copilot-instructions.md');
+              return;
+            }
+
+            message = 'Instruções fornecidas em `.github/copilot-instructions.md` e caixa de entendimento marcada';
             core.setOutput('STEP_MESSAGE', message);
 
       - name: Check copilot-setup-steps.yml
@@ -80,13 +99,30 @@ jobs:
             let message = '';
 
             if (!changedFiles.includes('.github/workflows/copilot-setup-steps.yml')) {
-              message = 'You need to setup copilot-setup-steps.yml workflow';
+              message = 'Você precisa configurar o workflow copilot-setup-steps.yml';
               core.setOutput('STEP_MESSAGE', message);
-              core.setFailed('The `copilot-setup-steps.yml` file was not modified');
+              core.setFailed('O arquivo `copilot-setup-steps.yml` não foi modificado');
               return;
             }
 
-            message = 'You setup the copilot-setup-steps.yml workflow';
+            const fs = require('fs');
+            try {
+              const fileContent = fs.readFileSync('.github/workflows/copilot-setup-steps.yml', 'utf8');
+              const checkboxText = '[X] - Aprendi sobre como configurar o copilot-setup-steps.';
+              if (!fileContent.includes(checkboxText)) {
+                message = 'Você precisa marcar a caixa de seleção "[X] - Aprendi sobre como configurar o copilot-setup-steps." no arquivo copilot-setup-steps.yml';
+                core.setOutput('STEP_MESSAGE', message);
+                core.setFailed('A caixa de seleção não foi marcada no copilot-setup-steps.yml');
+                return;
+              }
+            } catch (error) {
+              message = 'Erro ao ler o arquivo copilot-setup-steps.yml: ' + error.message;
+              core.setOutput('STEP_MESSAGE', message);
+              core.setFailed('Não foi possível ler o arquivo copilot-setup-steps.yml');
+              return;
+            }
+
+            message = 'Você configurou o workflow copilot-setup-steps.yml e aprendeu sobre como configurá-lo.';
             core.setOutput('STEP_MESSAGE', message);
 
       - name: Build message - step results
