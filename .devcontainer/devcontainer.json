@@ -1,27 +1,83 @@
 {
-  "name": "Java 21 Development Environment",
-  "image": "mcr.microsoft.com/vscode/devcontainers/java:21",
-  "forwardPorts": [8080],
+  "name": "Java 21 Development",
+  "image": "mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": true,
+      "installGradle": false
+    },
+    "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "forwardPorts": [
+    8080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot App",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
   "postCreateCommand": "bash ./.devcontainer/postCreate.sh",
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
-        "vscjava.vscode-java-pack",
+        "mongodb.mongodb-vscode",
         "redhat.java",
-        "vscjava.vscode-maven",
-        "vscjava.vscode-java-test",
         "vscjava.vscode-java-debug",
-        "SonarSource.sonarlint-vscode",
-        "ms-vscode.vscode-json"
-      ]
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency",
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-spring-boot-dashboard"
+      ],
+      "settings": {
+        "java.configuration.detectJdksAtStart": true,
+        "java.jdt.ls.vmargs": "-Xmx2G -Xms512m",
+        "java.debug.settings.hotCodeReplace": "auto",
+        "java.test.config": {
+          "vmargs": [
+            "-ea",
+            "-Xmx1G"
+          ]
+        },
+        "java.test.defaultConfig": "default",
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.enabled": true,
+        "editor.formatOnSave": true,
+        "java.completion.importOrder": [
+          "java",
+          "javax",
+          "org",
+          "com",
+          ""
+        ],
+        "maven.pomfile.autoUpdateEffectivePOM": true,
+        "spring-boot.ls.java.home": "",
+        "spring-boot.ls.java.vmargs": [
+          "-Xmx1G"
+        ],
+        "spring-boot.dashboard.openInBrowser.enabled": true
+      }
     }
   },
-  "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "21",
-      "jdkDistro": "temurin",
-      "installMaven": true
-    }
-  }
+  "initializeCommand": {
+    "Check for launch.json": "mkdir -p .vscode"
+  },
+  "containerEnv": {
+    "SECURITY_ADMIN_USERNAME": "admin",
+    "SECURITY_ADMIN_PASSWORD": "admin123",
+    "SECURITY_ADMIN_ROLES": "ADMIN",
+    "PRINCIPAL_PASSWORD": "admin123",
+    "TEACHER_RODRIGUEZ_PASSWORD": "art123",
+    "TEACHER_CHEN_PASSWORD": "chess123"
+  },
+  "onCreateCommand": "echo 'Preparing development environment...'",
+  "postStartCommand": "echo 'Development environment ready!'"
 }

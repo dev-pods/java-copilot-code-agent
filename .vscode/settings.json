@@ -1,0 +1,49 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.debug.settings.hotCodeReplace": "auto",
+    "java.test.config": [
+        {
+            "name": "junit-config",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-ea",
+                "-Dspring.profiles.active=test"
+            ]
+        }
+    ],
+    "java.test.defaultConfig": "junit-config",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "java.completion.importOrder": [
+        "java",
+        "javax",
+        "org",
+        "com",
+        ""
+    ],
+    "maven.pomfile.autoUpdateEffectivePOM": true,
+    "java.sources.organizeImports.starThreshold": 999,
+    "java.sources.organizeImports.staticStarThreshold": 999,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.classpath": false,
+        "**/.project": false,
+        "**/.settings": false,
+        "**/.factorypath": false,
+        "**/target": false
+    },
+    "editor.rulers": [
+        120
+    ],
+    "spring-boot.dashboard.openInBrowser.enabled": true,
+    "java.debug.settings.enableRunDebugCodeLens": true,
+    "java.test.editor.enableShortcuts": true
+}

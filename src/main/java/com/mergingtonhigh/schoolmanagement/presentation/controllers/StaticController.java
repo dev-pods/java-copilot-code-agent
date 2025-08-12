@@ -14,6 +14,6 @@ public class StaticController {
      */
     @GetMapping("/")
     public String index() {
-        return "redirect:/static/index.html";
+        return "forward:/static/index.html";
     }
 }

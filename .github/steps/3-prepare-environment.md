@@ -50,7 +50,7 @@ Vamos adicionar informações sobre a escola, papéis a serem assumidos, tarefas
    - Não crie apps ou serviços adicionais.
    - Não crie ferramentas de linha de comando.
    - Não faça uma aplicação longa em um único arquivo. Sempre use uma estrutura de diretórios fácil de entender.
-   - Use apenas HTML, CSS, Javascript e Python. Não utilize outras linguagens.
+   - Use apenas HTML, CSS, Javascript e Java. Não utilize outras linguagens.
    ```
 
    > 💡 Dica: Você pode adicionar mais detalhes. Veja o arquivo `copilot-instructions-ext.md` para ideias.
@@ -73,7 +73,7 @@ A personalização do ambiente de desenvolvimento do Copilot e o ajuste das [per
 
    <img width="650" alt="imagem" src="https://github.com/user-attachments/assets/ac615290-1045-45a5-8201-637721ef6fd2" />
 
-1. Cole a configuração de workflow abaixo, que irá pré-instalar as dependências do backend Python do site.
+1. Cole a configuração de workflow abaixo, que irá pré-instalar as dependências do backend Java do site.
 
    ```yml
    name: "Copilot Setup Steps"
@@ -92,16 +92,15 @@ A personalização do ambiente de desenvolvimento do Copilot e o ajuste das [per
          - name: Fazer checkout do código
            uses: actions/checkout@v4
 
-         - name: Configurar Python
-           uses: actions/setup-python@v4
+         - name: Configurar Java
+           uses: actions/setup-java@v4
            with:
-             python-version: "3.x"
-             cache: "pip"
+             java-version: "21"
+             cache: "maven"
 
-         - name: Instalar dependências Python
+         - name: Instalar dependências Java
            run: |
-             python -m pip install --upgrade pip
-             pip install -r src/requirements.txt
+             mvn install
    ```
 
    > 🪧 **Nota:** O Copilot irá buscar automaticamente o conteúdo do repositório depois. Este workflow fornece acesso antecipado durante a configuração para instalar as dependências.

@@ -1,187 +1,255 @@
-# High School Management System - Java Edition
+# Sistema de Gestão Escolar - Mergington High School
 
-A modern web application for managing extracurricular activities at Mergington High School, built with Java 21 and Spring Boot 3.
+Sistema de gestão de atividades extracurriculares desenvolvido com Spring Boot e arquitetura limpa (Clean Architecture).
 
-## 🚀 Technology Stack
+## 📋 Visão Geral
 
-- **Java 21** - Latest LTS version with modern language features
-- **Spring Boot 3.3.6** - Modern Spring framework
-- **Spring Data MongoDB** - Database integration
-- **Spring Security** - Authentication and authorization
-- **Clean Architecture** - Domain-driven design principles
-- **JUnit 5 & Mockito** - Comprehensive testing
-- **Jacoco** - Test coverage reporting
-- **Maven** - Build and dependency management
-- **PlantUML** - Architecture documentation
+O **School Management System** é uma aplicação web que permite o gerenciamento de atividades extracurriculares da Mergington High School. O sistema possibilita que professores administrem atividades e que estudantes se inscrevam nelas através de uma interface web intuitiva.
 
-## 🏗️ Architecture
+## 🏗️ Arquitetura
 
-This application follows **Clean Architecture** principles with clear separation of concerns:
+### Princípios Arquiteturais
 
+- **Clean Architecture**: Separação clara entre camadas de domínio, aplicação, infraestrutura e apresentação
+- **Domain-Driven Design (DDD)**: Modelagem focada no domínio escolar
+- **SOLID Principles**: Código bem estruturado e extensível
+- **Hexagonal Architecture**: Isolamento das regras de negócio
+
+### Estrutura de Camadas
+
+```text
+src/main/java/com/mergingtonhigh/schoolmanagement/
+├── domain/                    # 🎯 Camada de Domínio
+│   ├── entities/             # Entidades principais
+│   │   ├── Activity.java     # Atividade extracurricular
+│   │   └── Teacher.java      # Professor/Administrador
+│   ├── repositories/         # Interfaces de repositório
+│   │   ├── ActivityRepository.java
+│   │   └── TeacherRepository.java
+│   └── valueobjects/         # Objetos de valor
+│       ├── Email.java        # Validação de email
+│       └── ScheduleDetails.java # Detalhes de horário
+├── application/              # 🔧 Camada de Aplicação
+│   ├── dtos/                 # Data Transfer Objects
+│   │   ├── ActivityDTO.java
+│   │   ├── StudentRegistrationDTO.java
+│   │   └── TeacherDTO.java
+│   └── usecases/             # Casos de uso
+│       ├── ActivityUseCase.java
+│       └── StudentRegistrationUseCase.java
+├── infrastructure/           # 🏭 Camada de Infraestrutura
+│   ├── config/               # Configurações
+│   ├── migrations/           # Migrações do banco
+│   │   └── V001_InitialDatabaseSetup.java
+│   └── persistence/          # Implementações de repositório
+│       ├── ActivityRepositoryImpl.java
+│       ├── MongoActivityRepository.java
+│       ├── MongoTeacherRepository.java
+│       └── TeacherRepositoryImpl.java
+└── presentation/             # 🎨 Camada de Apresentação
+    ├── controllers/          # Controllers REST
+    │   └── ActivityController.java
+    └── mappers/              # Mapeadores DTO ↔ Entity
+        ├── ActivityMapper.java
+        └── TeacherMapper.java
 ```
-📦 Domain Layer (Core Business Logic)
-├── 🎯 Entities (Activity, Teacher)
-├── 💎 Value Objects (Email, ScheduleDetails)
-└── 🔌 Repository Interfaces
 
-📦 Application Layer (Use Cases)
-├── 🎪 Use Cases (Activity, Authentication, Registration)
-└── 📋 DTOs (Data Transfer Objects)
+## 🚀 Tecnologias Utilizadas
 
-📦 Infrastructure Layer (External Concerns)
-├── 🗃️ MongoDB Repositories
-├── 🔐 Security Configuration
-└── ⚙️ Application Configuration
+### Backend
 
-📦 Presentation Layer (Controllers)
-├── 🌐 REST Controllers
-└── 🔄 Entity-DTO Mappers
-```
+- **Java 21** - Linguagem de programação
+- **Spring Boot 3.5.4** - Framework principal
+- **Spring Data MongoDB** - Integração com MongoDB
+- **Spring Security** - Autenticação e autorização
+- **Spring Web** - APIs REST
+- **Spring Validation** - Validação de dados
+- **Mongock 5.5.1** - Migrações do banco de dados
+- **BouncyCastle** - Criptografia para senhas
 
-## 📋 Features
+### Frontend
 
-- **Activity Management**: Browse and filter extracurricular activities
-- **Student Registration**: Sign up and unregister for activities
-- **Teacher Authentication**: Secure login for teachers and administrators
-- **Schedule Filtering**: Filter activities by day and time
-- **Clean API**: RESTful endpoints with proper HTTP status codes
-- **Frontend Integration**: Serves existing HTML/CSS/JavaScript frontend
+- **HTML5/CSS3/JavaScript** - Interface web
+- **Vanilla JavaScript** - Interatividade do frontend
 
-## 🔗 API Endpoints
+### Banco de Dados
 
-### Activities
-- `GET /activities` - List all activities (with optional filtering)
-- `GET /activities/days` - Get available days
-- `POST /activities/{name}/signup` - Sign up student (requires teacher auth)
-- `POST /activities/{name}/unregister` - Remove student (requires teacher auth)
+- **MongoDB** - Banco de dados NoSQL
 
-### Authentication
-- `POST /auth/login` - Teacher login
-- `GET /auth/check-session` - Validate session
+### Ferramentas de Desenvolvimento
 
-## 🛠️ Development
+- **Maven** - Gerenciamento de dependências
+- **JUnit 5** - Testes unitários
+- **Mockito** - Mocks para testes
+- **Testcontainers** - Testes de integração
+- **Jacoco** - Cobertura de testes
 
-### Prerequisites
-- Java 21 (Temurin distribution recommended)
-- Maven 3.9+
-- MongoDB (optional - application includes fallbacks)
+## 📦 Funcionalidades Principais
 
-### Quick Start
+### 🎓 Gestão de Atividades
 
-1. **Clone and build**:
+- **Listagem de atividades** com filtros por:
+  - Dia da semana
+  - Horário (manhã, tarde, fim de semana)
+  - Categoria (esportes, artes, acadêmico, etc.)
+- **Detalhes de atividades**:
+  - Nome e descrição
+  - Horários e dias da semana
+  - Capacidade máxima
+  - Lista de participantes
+
+### 👨‍🏫 Sistema de Autenticação
+
+- **Login de professores** com username/senha
+- **Controle de acesso** baseado em roles (TEACHER/ADMIN)
+- **Autenticação requerida** para inscrições
+
+### 📝 Gestão de Inscrições
+
+- **Inscrição de estudantes** em atividades
+- **Cancelamento de inscrições**
+- **Validações**:
+  - Capacidade máxima
+  - Duplicatas
+  - Autenticação do professor
+
+### 🎨 Interface Web
+
+- **Design responsivo** e intuitivo
+- **Filtros dinâmicos** para busca de atividades
+- **Modais** para login e inscrições
+- **Feedback visual** para ações do usuário
+
+## 🔧 Configuração e Execução
+
+### Pré-requisitos
+
+- Java 21
+- Maven 3.8+
+- MongoDB 4.4+
+
+### Variáveis de Ambiente
+
+Crie um arquivo `.env` baseado no `.env.example`
+
+### Executando o Projeto
+
+1. **Iniciar MongoDB**:
+
    ```bash
-   git clone <repository-url>
-   cd school-management-system
+   # Docker
+   docker run -d -p 27017:27017 --name mongodb mongo:latest
+   
+   # Ou MongoDB local
+   mongod
+   ```
+
+2. **Compilar e executar**:
+
+   ```bash
+   # Compilar o projeto
    mvn clean compile
-   ```
-
-2. **Run tests**:
-   ```bash
+   
+   # Executar os testes
    mvn test
-   ```
-
-3. **Start the application**:
-   ```bash
+   
+   # Iniciar a aplicação
    mvn spring-boot:run
    ```
 
-4. **Access the application**:
-   - Web interface: http://localhost:8080
-   - API documentation: http://localhost:8080/swagger-ui.html (if enabled)
+3. **Acessar a aplicação**:
+   - Frontend: <http://localhost:8080>
+   - API REST: <http://localhost:8080/activities>
 
-### Testing
+### Tasks Maven Disponíveis
 
-The project includes comprehensive unit tests:
+- `mvn clean install` - Build completo
+- `mvn test` - Executar testes
+- `mvn spring-boot:run` - Iniciar aplicação
+- `mvn package -DskipTests` - Gerar JAR
+
+## 🌐 API REST
+
+### Endpoints Principais
+
+#### Atividades
+
+```http
+GET /activities
+GET /activities?day=Monday&start_time=15:00&end_time=17:00
+GET /activities/days
+```
+
+#### Inscrições
+
+```http
+POST /activities/{activityName}/signup
+Content-Type: application/x-www-form-urlencoded
+
+email=student@mergington.edu&teacher_username=teacher1
+
+POST /activities/{activityName}/unregister
+Content-Type: application/x-www-form-urlencoded
+
+email=student@mergington.edu&teacher_username=teacher1
+```
+
+## 🧪 Testes
+
+### Estrutura de Testes
+
+```text
+src/test/java/
+├── application/usecases/     # Testes de casos de uso
+├── domain/entities/          # Testes de entidades
+└── integration/             # Testes de integração
+```
+
+### Executar Testes
 
 ```bash
-# Run all tests
+# Todos os testes
 mvn test
 
-# Generate coverage report
+# Testes específicos
+mvn test -Dtest=ActivityTest
+mvn test -Dtest=StudentRegistrationUseCaseTest
+
+# Com cobertura
 mvn jacoco:report
-
-# View coverage report
-open target/site/jacoco/index.html
 ```
 
-### Key Testing Features
-- **Domain Entity Tests**: Validate business logic
-- **Use Case Tests**: Mock external dependencies with Mockito
-- **Repository Tests**: Integration testing with TestContainers
-- **Coverage Reporting**: Jacoco integration
+## 📊 Dados Iniciais
 
-## 🏫 Default Data
+O sistema utiliza **Mongock** para realizar migrações automáticas do banco de dados, incluindo:
 
-The application initializes with sample data including:
+### Professores Padrão
 
-- **Activities**: Chess Club, Programming Class, Soccer Team, Art Club, and more
-- **Teachers**: Sample teacher accounts for testing
-- **Students**: Pre-registered students in activities
+- **admin** - Administrador principal
+- **teacher.rodriguez** - Professor de artes
+- **teacher.chen** - Professor de xadrez
 
-### Default Teacher Accounts
-- Username: `mrodriguez`, Password: `art123`
-- Username: `mchen`, Password: `chess456` 
-- Username: `principal`, Password: `admin789`
+### Atividades Exemplo
 
-## 📊 Test Coverage
+- **Art Club** - Terças e quintas, 15:30-17:00
+- **Chess Club** - Segundas e quartas, 15:30-17:00
+- **Drama Club** - Quartas e sextas, 16:00-18:00
 
-The project maintains high test coverage with:
-- Domain entities: 100% coverage
-- Use cases: Comprehensive mocking scenarios
-- Integration points: External dependency validation
+## 🔒 Segurança
 
-## 📖 Documentation
+- **Autenticação HTTP Basic** para endpoints administrativos
+- **Criptografia Argon2** para senhas
+- **Validação de dados** em todas as camadas
+- **CORS** configurado para desenvolvimento
 
-- **Architecture Diagrams**: Located in `docs/architecture/`
-- **C4 Model**: System context, container, and component diagrams
-- **PlantUML**: Generate diagrams with `mvn plantuml:generate`
-- **API Documentation**: Integrated with Spring Boot
+## 📈 Monitoramento
 
-## 🔧 Configuration
+- **Spring Actuator** - Métricas da aplicação
+- **Logs estruturados** - Nível DEBUG para desenvolvimento
+- **Health checks** - Status da aplicação e banco
 
-Key configuration options in `application.properties`:
+## 🚀 Deploy
 
-```properties
-# Server Configuration
-server.port=8080
+### Perfis de Ambiente
 
-# MongoDB (optional)
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=mergington_high
-
-# Security
-spring.security.user.name=admin
-spring.security.user.password=admin123
-```
-
-## 🐳 Development Environment
-
-This project supports GitHub Codespaces with pre-configured:
-- Java 21 development environment
-- Maven build tools
-- VS Code extensions for Java development
-- MongoDB tools (optional)
-
-## 🚀 Deployment
-
-The application can be deployed using:
-- **JAR file**: `mvn clean package && java -jar target/school-management-system-*.jar`
-- **Docker**: Create Dockerfile based on `openjdk:21-jre`
-- **Cloud platforms**: Spring Boot compatible with most cloud providers
-
-## 🤝 Contributing
-
-1. Follow Clean Architecture principles
-2. Write tests for all new features
-3. Maintain test coverage above 80%
-4. Use conventional commit messages
-5. Update documentation for API changes
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Built with ❤️ using Clean Architecture and modern Java practices**
+- **dev** - Ambiente de desenvolvimento

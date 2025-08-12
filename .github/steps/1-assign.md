@@ -116,10 +116,9 @@ Em outros exercícios, temos desenvolvido o site de Atividades Extracurriculares
 
 1. Aguarde um tempo para o ambiente ser preparado. Ele instalará automaticamente todos os requisitos e serviços.
 
-1. Valide se as extensões **GitHub Copilot** e **Python** estão instaladas e habilitadas.
+1. Valide se as extensões **GitHub Copilot** e **Java** estão instaladas e habilitadas.
 
    <img width="300" alt="copilot extension for VS Code" src="https://github.com/user-attachments/assets/ef1ef984-17fc-4b20-a9a6-65a866def468" /><br/>
-   <img width="300" alt="python extension for VS Code" src="https://github.com/user-attachments/assets/3040c0f5-1658-47e2-a439-20504a384f77" />
 
 1. Tente executar a aplicação. Na barra lateral esquerda, selecione a aba **Run and Debug** e clique no ícone **Iniciar Depuração**.
 

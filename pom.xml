@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.5.4</version>
+        <relativePath/>
     </parent>
     
     <groupId>com.mergingtonhigh</groupId>
@@ -21,6 +21,19 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    <!-- Manage Mongock versions with BOM -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.mongock</groupId>
+                <artifactId>mongock-bom</artifactId>
+                <version>5.5.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     
     <dependencies>
         <!-- Spring Boot Starters -->
@@ -46,6 +59,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
         </dependency>
+        <!-- BouncyCastle (required for Argon2PasswordEncoder at runtime) -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>1.78.1</version>
+        </dependency>
         
         <!-- Development and Configuration -->
         <dependency>
@@ -59,7 +78,22 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Mongock: Runner for Spring Boot 3.x -->
+        <dependency>
+            <groupId>io.mongock</groupId>
+            <artifactId>mongock-springboot-v3</artifactId>
+        </dependency>
+        <!-- Mongock: Spring Data MongoDB v4 driver (compatible with Spring Data MongoDB 4.x and Spring Boot 3.x) -->
+        <dependency>
+            <groupId>io.mongock</groupId>
+            <artifactId>mongodb-springdata-v4-driver</artifactId>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,11 +124,34 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             
-            <!-- Jacoco for test coverage -->
+            <!-- Force Maven to use Java 21 for compilation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+            
+            <!-- Force Surefire to use Java 21 for test execution -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <jvm>${java.home}/bin/java</jvm>
+                    <argLine>-Djava.version=21</argLine>
+                </configuration>
+            </plugin>
+            
+            <!-- Jacoco for test coverage - updated version for Java 21+ support -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
+                <version>0.8.11</version>
                 <executions>
                     <execution>
                         <goals>

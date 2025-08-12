@@ -1,19 +1,57 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch Mergington WebApp",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "uvicorn",
-      "args": [
-        "src.app:app",
-        "--reload"
-      ],
-      "jinja": true
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run School Management System",
+            "request": "launch",
+            "mainClass": "com.mergingtonhigh.schoolmanagement.SchoolManagementSystemApplication",
+            "projectName": "school-management-system",
+            "args": [],
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "dev"
+            },
+            "vmArgs": "-Dspring.output.ansi.enabled=always"
+        },
+        {
+            "type": "java",
+            "name": "Debug School Management System",
+            "request": "launch",
+            "mainClass": "com.mergingtonhigh.schoolmanagement.SchoolManagementSystemApplication",
+            "projectName": "school-management-system",
+            "args": [],
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "dev"
+            },
+            "vmArgs": "-Dspring.output.ansi.enabled=always -Dlogging.level.root=INFO -Dlogging.level.com.mergingtonhigh=DEBUG",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "sourcePaths": [
+                "${workspaceFolder}/src/main/java"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Run Unit Tests",
+            "request": "launch",
+            "mainClass": "",
+            "projectName": "school-management-system",
+            "args": [],
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "test"
+            },
+            "vmArgs": "-Dspring.output.ansi.enabled=always -ea",
+            "console": "internalConsole",
+            "sourcePaths": [
+                "${workspaceFolder}/src/test/java"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Debug Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            "vmArgs": "-ea"
+        }
+    ]
 }
