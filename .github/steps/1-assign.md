@@ -38,14 +38,14 @@ Do ponto de vista do colaborador, o fluxo é muito parecido com o de um projeto 
 ```mermaid
 flowchart LR
 
-    contributor((Contributor))
+    contributor((Colaborador))
     copilot((Copilot))
-    reviewer((Reviewer))
+    reviewer((Revisor))
 
     issue@{ shape: notch-rect, label: "Issue" }
-    repo@{ shape: cyl, label: "Repository" }
+    repo@{ shape: cyl, label: "Repositório" }
     branch@{ shape: subproc, label: "Branch" }
-    review@{ shape: diamond, label: "Review" }
+    review@{ shape: diamond, label: "Revisão" }
 
 
     subgraph PR[Pull Request]
@@ -56,20 +56,20 @@ flowchart LR
     end
 
 
-    %% Assign
-    contributor gl1@-->|Selects| issue
-    issue gl2@-->|Assigns to| copilot
+    %% Atribuir
+    contributor gl1@-->|Seleciona| issue
+    issue gl2@-->|Atribui para| copilot
 
-    %% Work
-    copilot pl1@-->|Creates| branch
-    branch pl3@-->|Starts| review
+    %% Trabalhar
+    copilot pl1@-->|Cria| branch
+    branch pl3@-->|Inicia| review
 
-    %% Review
-    reviewer gl3@-->|Provides feedback| review
-    review pl4@--> |Implements feedback| branch
+    %% Revisar
+    reviewer gl3@-->|Fornece feedback| review
+    review pl4@--> |Implementa feedback| branch
 
-    %% Approved
-    review gl4@-->|Approves and merges| repo
+    %% Aprovado
+    review gl4@-->|Aprova e faz merge| repo
 
 
     classDef users fill:#08872B,stroke:#5FED83,color:#fff

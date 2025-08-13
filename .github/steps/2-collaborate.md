@@ -19,7 +19,7 @@ Você pode dar feedback ao Copilot da mesma forma que faria com um colega. Essas
   - Workflows disparados em pull requests precisam de aprovação humana para rodar.
 - Regras e proteções do repositório continuam valendo normalmente.
 
-> [!DICA]
+> [!TIP]
 > Todo trabalho criado pelo Copilot é commitado com o responsável como co-contribuidor (mantendo seu gráfico de contribuições seguro). 💕
 
 ### ⌨️ Atividade: Veja o progresso do Copilot
@@ -53,7 +53,7 @@ Você pode dar feedback ao Copilot da mesma forma que faria com um colega. Essas
 
 1. Se necessário, aguarde o Copilot terminar as alterações.
 
-> [!DICA]
+> [!TIP]
 > Você pode usar o menu **edited** para ver o histórico de alterações da descrição do pull request.
 >
 > <details>

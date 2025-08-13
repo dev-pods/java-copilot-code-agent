@@ -71,7 +71,7 @@ jobs:
             const fs = require('fs');
             try {
               const fileContent = fs.readFileSync('.github/copilot-instructions.md', 'utf8');
-              const checkboxText = '[X] - Eu entendi o conteúdo deste arquivo.';
+              const checkboxText = '[X] - Aprendi sobre como configurar o copilot-instructions.';
               
               if (!fileContent.includes(checkboxText)) {
                 message = 'Você precisa marcar a caixa de seleção "[X] - Aprendi sobre como configurar o copilot-instructions." no arquivo copilot-instructions.md';

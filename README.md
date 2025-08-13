@@ -22,8 +22,8 @@ Neste exercício, você irá:
 1. Customizar e otimizar o ambiente de trabalho do agente.
 1. Preparar suas issues para obter melhores resultados.
 
-> [!IMPORTANTE]
-> O agente de código Copilot está em **prévia pública** e gratuito com limitações até 1º de junho de 2025.  
+> [!IMPORTANT]
+> O agente de código Copilot está em constante evolução.
 > Espere pequenas diferenças neste exercício conforme as funcionalidades evoluem.
 
 ### Como iniciar este exercício

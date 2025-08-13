@@ -76,7 +76,7 @@ O arquivo `.github/copilot-instructions.md` já existe no repositório e contém
 
 1. No menu superior, selecione a aba **Code**.
 
-1. Crie um novo branch chamado `entendendo-configuracao`.
+1. Crie um novo branch chamado `prepare-environment`.
 
    <img width="250" alt="imagem" src="https://github.com/user-attachments/assets/c48deded-4214-4edd-9a50-d1368bfb12e8" />
 
@@ -115,7 +115,7 @@ O arquivo `.github/copilot-instructions.md` já existe no repositório e contém
    - Use apenas HTML, CSS, Javascript e Java. Não utilize outras linguagens.
    ```
 
-1. **Faça commit das alterações** no branch `entendendo-configuracao`.
+1. **Faça commit das alterações** no branch `prepare-environment`.
 
 ### ⌨️ Atividade: Configure o ambiente de desenvolvimento para o GitHub Copilot Agent
 
@@ -123,7 +123,7 @@ O arquivo `copilot-setup-steps.yml` já existe e contém a configuração do amb
 
 > **Como funciona**: Este workflow GitHub Actions é executado **antes** do Copilot Agent iniciar, preparando um ambiente completo com Java 21, Maven e MongoDB. Isso economiza tempo e garante consistência.
 
-1. Certifique-se de que você ainda está no branch `entendendo-configuracao`.
+1. Certifique-se de que você ainda está no branch `prepare-environment`.
 
 1. Navegue até o arquivo `.github/workflows/copilot-setup-steps.yml` e **estude seu conteúdo detalhadamente**.
 
@@ -149,7 +149,7 @@ O arquivo `copilot-setup-steps.yml` já existe e contém a configuração do amb
    - Clique em "Run workflow" para executar manualmente
    - Observe como o ambiente é configurado
 
-1. **Faça commit das alterações** no branch `entendendo-configuracao`.
+1. **Faça commit das alterações** no branch `prepare-environment`.
 
 #### Por que essa configuração é importante?
 
@@ -171,7 +171,7 @@ O arquivo `copilot-setup-steps.yml` já existe e contém a configuração do amb
 
 ### 🎯 Finalizando a Etapa 3
 
-1. Crie um **pull request** do branch `entendendo-configuracao` para `main`, mas **NÃO** faça o merge ainda.
+1. Crie um **pull request** do branch `prepare-environment` para `main`, mas **NÃO** faça o merge ainda.
 
 2. O workflow de validação irá verificar se:
    - [X] Você marcou a caixa de entendimento no arquivo `copilot-instructions.md`
@@ -200,7 +200,7 @@ O arquivo `copilot-setup-steps.yml` já existe e contém a configuração do amb
 
 Se você acidentalmente fez o merge do pull request antes da Mona fornecer feedback, tudo bem! Você pode:
 
-1. Recriar o branch `entendendo-configuracao` 
+1. Recriar o branch `prepare-environment` 
 2. Fazer as correções necessárias
 3. Criar um novo pull request
 

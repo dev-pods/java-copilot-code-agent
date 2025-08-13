@@ -280,9 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Format schedule for display - handles both old and new format
   function formatSchedule(details) {
-    // If schedule_details is available, use the structured data
-    if (details.schedule_details) {
-      const days = details.schedule_details.days.join(", ");
+    // If scheduleDetails is available, use the structured data
+    if (details.scheduleDetails) {
+      const days = details.scheduleDetails.days.join(", ");
 
       // Convert 24h time format to 12h AM/PM format for display
       const formatTime = (time24) => {
@@ -294,13 +294,13 @@ document.addEventListener("DOMContentLoaded", () => {
           .padStart(2, "0")} ${period}`;
       };
 
-      const startTime = formatTime(details.schedule_details.start_time);
-      const endTime = formatTime(details.schedule_details.end_time);
+      const startTime = formatTime(details.scheduleDetails.startTime);
+      const endTime = formatTime(details.scheduleDetails.endTime);
 
       return `${days}, ${startTime} - ${endTime}`;
     }
 
-    // Fallback to the string format if schedule_details isn't available
+    // Fallback to the string format if scheduleDetails isn't available
     return details.schedule;
   }
 
@@ -426,8 +426,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Apply weekend filter if selected
-      if (currentTimeRange === "weekend" && details.schedule_details) {
-        const activityDays = details.schedule_details.days;
+      if (currentTimeRange === "weekend" && details.scheduleDetails) {
+        const activityDays = details.scheduleDetails.days;
         const isWeekendActivity = activityDays.some((day) =>
           timeRanges.weekend.days.includes(day)
         );
@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
     activityCard.className = "activity-card";
 
     // Calculate spots and capacity
-    const totalSpots = details.max_participants;
+    const totalSpots = details.maxParticipants;
     const takenSpots = details.participants.length;
     const spotsLeft = totalSpots - takenSpots;
     const capacityPercentage = (takenSpots / totalSpots) * 100;

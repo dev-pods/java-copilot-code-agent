@@ -1,12 +1,17 @@
 package com.mergingtonhigh.schoolmanagement.presentation.controllers;
 
-import com.mergingtonhigh.schoolmanagement.application.dtos.LoginRequestDTO;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mergingtonhigh.schoolmanagement.application.dtos.TeacherDTO;
 import com.mergingtonhigh.schoolmanagement.application.usecases.AuthenticationUseCase;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * REST controller for authentication endpoints.
@@ -15,13 +20,13 @@ import java.util.Map;
 @RequestMapping("/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
-    
+
     private final AuthenticationUseCase authenticationUseCase;
-    
+
     public AuthController(AuthenticationUseCase authenticationUseCase) {
         this.authenticationUseCase = authenticationUseCase;
     }
-    
+
     /**
      * Login a teacher account.
      */
@@ -35,7 +40,7 @@ public class AuthController {
                     .body(Map.of("detail", "Invalid username or password"));
         }
     }
-    
+
     /**
      * Check if a session is valid by username.
      */

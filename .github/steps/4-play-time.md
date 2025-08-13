@@ -44,7 +44,7 @@ Adicionar alguns templates permitirá que qualquer professor solicite facilmente
 
 1. Muito bom! Com pelo menos 1 pull request mesclado, a Mona deve revisar seu trabalho e preparar a avaliação final.
 
-> [!IMPORTANTE]
+> [!IMPORTANT]
 > Trabalhar em múltiplas issues em paralelo é uma arte. 🎨
 > Mantenha-as independentes para evitar conflitos de merge! 😱
 
