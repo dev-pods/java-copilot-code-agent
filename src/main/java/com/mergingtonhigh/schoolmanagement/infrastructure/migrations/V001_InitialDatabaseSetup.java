@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mergingtonhigh.schoolmanagement.domain.entities.Activity;
 import com.mergingtonhigh.schoolmanagement.domain.entities.Teacher;
+import com.mergingtonhigh.schoolmanagement.domain.valueobjects.ActivityType;
 import com.mergingtonhigh.schoolmanagement.domain.valueobjects.ScheduleDetails;
 
 import io.mongock.api.annotations.ChangeUnit;
@@ -25,201 +26,230 @@ import io.mongock.api.annotations.RollbackExecution;
 @ChangeUnit(id = "initial-database-setup", order = "001", author = "Andre Fontoura")
 public class V001_InitialDatabaseSetup {
 
-    private final MongoTemplate mongoTemplate;
-    private final PasswordEncoder passwordEncoder;
-    private final Environment environment;
+        private final MongoTemplate mongoTemplate;
+        private final PasswordEncoder passwordEncoder;
+        private final Environment environment;
 
-    public V001_InitialDatabaseSetup(MongoTemplate mongoTemplate, PasswordEncoder passwordEncoder,
-            Environment environment) {
-        this.mongoTemplate = mongoTemplate;
-        this.passwordEncoder = passwordEncoder;
-        this.environment = environment;
-    }
-
-    @Execution
-    public void migrate() {
-        seedActivitiesIfEmpty();
-        seedTeachersIfEmpty();
-    }
-
-    private void seedActivitiesIfEmpty() {
-        // Only seed if no activities exist
-        if (mongoTemplate.count(new Query(), Activity.class) == 0) {
-            seedActivities();
+        public V001_InitialDatabaseSetup(MongoTemplate mongoTemplate, PasswordEncoder passwordEncoder,
+                        Environment environment) {
+                this.mongoTemplate = mongoTemplate;
+                this.passwordEncoder = passwordEncoder;
+                this.environment = environment;
         }
-    }
 
-    private void seedTeachersIfEmpty() {
-        // Only seed if no teachers exist
-        if (mongoTemplate.count(new Query(), Teacher.class) == 0) {
-            seedTeachers();
+        @Execution
+        public void migrate() {
+                seedActivitiesIfEmpty();
+                seedTeachersIfEmpty();
         }
-    }
 
-    private void seedActivities() {
-        // Chess Club
-        Activity chessClub = new Activity(
-                "Chess Club",
-                "Learn strategies and compete in chess tournaments",
-                "Mondays and Fridays, 3:15 PM - 4:45 PM",
-                new ScheduleDetails(List.of("Monday", "Friday"), LocalTime.of(15, 15), LocalTime.of(16, 45)),
-                12);
-        chessClub.setParticipants(List.of("michael@mergington.edu", "daniel@mergington.edu"));
-        mongoTemplate.save(chessClub);
+        private void seedActivitiesIfEmpty() {
+                // Only seed if no activities exist
+                if (mongoTemplate.count(new Query(), Activity.class) == 0) {
+                        seedActivities();
+                }
+        }
 
-        // Programming Class
-        Activity programmingClass = new Activity(
-                "Programming Class",
-                "Learn programming fundamentals and build software projects",
-                "Tuesdays and Thursdays, 7:00 AM - 8:00 AM",
-                new ScheduleDetails(List.of("Tuesday", "Thursday"), LocalTime.of(7, 0), LocalTime.of(8, 0)),
-                20);
-        programmingClass.setParticipants(List.of("emma@mergington.edu", "sophia@mergington.edu"));
-        mongoTemplate.save(programmingClass);
+        private void seedTeachersIfEmpty() {
+                // Only seed if no teachers exist
+                if (mongoTemplate.count(new Query(), Teacher.class) == 0) {
+                        seedTeachers();
+                }
+        }
 
-        // Morning Fitness
-        Activity morningFitness = new Activity(
-                "Morning Fitness",
-                "Early morning physical training and exercises",
-                "Mondays, Wednesdays, Fridays, 6:30 AM - 7:45 AM",
-                new ScheduleDetails(List.of("Monday", "Wednesday", "Friday"), LocalTime.of(6, 30), LocalTime.of(7, 45)),
-                30);
-        morningFitness.setParticipants(List.of("john@mergington.edu", "olivia@mergington.edu"));
-        mongoTemplate.save(morningFitness);
+        private void seedActivities() {
+                // Clube de Xadrez
+                Activity chessClub = new Activity(
+                                "Clube de Xadrez",
+                                "Aprenda estratégias e participe de torneios de xadrez",
+                                "Segundas e sextas-feiras, 15:15 - 16:45",
+                                new ScheduleDetails(List.of("Monday", "Friday"), LocalTime.of(15, 15),
+                                                LocalTime.of(16, 45)),
+                                12,
+                                ActivityType.ACADEMIC);
+                chessClub.setParticipants(List.of("michael@mergington.edu", "daniel@mergington.edu"));
+                mongoTemplate.save(chessClub);
 
-        // Soccer Team
-        Activity soccerTeam = new Activity(
-                "Soccer Team",
-                "Join the school soccer team and compete in matches",
-                "Tuesdays and Thursdays, 3:30 PM - 5:30 PM",
-                new ScheduleDetails(List.of("Tuesday", "Thursday"), LocalTime.of(15, 30), LocalTime.of(17, 30)),
-                22);
-        soccerTeam.setParticipants(List.of("liam@mergington.edu", "noah@mergington.edu"));
-        mongoTemplate.save(soccerTeam);
+                // Aula de Programação
+                Activity programmingClass = new Activity(
+                                "Aula de Programação",
+                                "Aprenda fundamentos de programação e desenvolva projetos de software",
+                                "Terças e quintas-feiras, 07:00 - 08:00",
+                                new ScheduleDetails(List.of("Tuesday", "Thursday"), LocalTime.of(7, 0),
+                                                LocalTime.of(8, 0)),
+                                20,
+                                ActivityType.TECHNOLOGY);
+                programmingClass.setParticipants(List.of("emma@mergington.edu", "sophia@mergington.edu"));
+                mongoTemplate.save(programmingClass);
 
-        // Basketball Team
-        Activity basketballTeam = new Activity(
-                "Basketball Team",
-                "Practice and compete in basketball tournaments",
-                "Wednesdays and Fridays, 3:15 PM - 5:00 PM",
-                new ScheduleDetails(List.of("Wednesday", "Friday"), LocalTime.of(15, 15), LocalTime.of(17, 0)),
-                15);
-        basketballTeam.setParticipants(List.of("ava@mergington.edu", "mia@mergington.edu"));
-        mongoTemplate.save(basketballTeam);
+                // Fitness Matinal
+                Activity morningFitness = new Activity(
+                                "Fitness Matinal",
+                                "Treinamento físico e exercícios matinais",
+                                "Segundas, quartas e sextas-feiras, 06:30 - 07:45",
+                                new ScheduleDetails(List.of("Monday", "Wednesday", "Friday"), LocalTime.of(6, 30),
+                                                LocalTime.of(7, 45)),
+                                30,
+                                ActivityType.SPORTS);
+                morningFitness.setParticipants(List.of("john@mergington.edu", "olivia@mergington.edu"));
+                mongoTemplate.save(morningFitness);
 
-        // Art Club
-        Activity artClub = new Activity(
-                "Art Club",
-                "Explore various art techniques and create masterpieces",
-                "Thursdays, 3:15 PM - 5:00 PM",
-                new ScheduleDetails(List.of("Thursday"), LocalTime.of(15, 15), LocalTime.of(17, 0)),
-                15);
-        artClub.setParticipants(List.of("amelia@mergington.edu", "harper@mergington.edu"));
-        mongoTemplate.save(artClub);
+                // Time de Futebol
+                Activity soccerTeam = new Activity(
+                                "Time de Futebol",
+                                "Junte-se ao time de futebol da escola e participe de competições",
+                                "Terças e quintas-feiras, 15:30 - 17:30",
+                                new ScheduleDetails(List.of("Tuesday", "Thursday"), LocalTime.of(15, 30),
+                                                LocalTime.of(17, 30)),
+                                22,
+                                ActivityType.SPORTS);
+                soccerTeam.setParticipants(List.of("liam@mergington.edu", "noah@mergington.edu"));
+                mongoTemplate.save(soccerTeam);
 
-        // Drama Club
-        Activity dramaClub = new Activity(
-                "Drama Club",
-                "Act, direct, and produce plays and performances",
-                "Mondays and Wednesdays, 3:30 PM - 5:30 PM",
-                new ScheduleDetails(List.of("Monday", "Wednesday"), LocalTime.of(15, 30), LocalTime.of(17, 30)),
-                20);
-        dramaClub.setParticipants(List.of("ella@mergington.edu", "scarlett@mergington.edu"));
-        mongoTemplate.save(dramaClub);
+                // Time de Basquete
+                Activity basketballTeam = new Activity(
+                                "Time de Basquete",
+                                "Pratique e participe de torneios de basquete",
+                                "Quartas e sextas-feiras, 15:15 - 17:00",
+                                new ScheduleDetails(List.of("Wednesday", "Friday"), LocalTime.of(15, 15),
+                                                LocalTime.of(17, 0)),
+                                15,
+                                ActivityType.SPORTS);
+                basketballTeam.setParticipants(List.of("ava@mergington.edu", "mia@mergington.edu"));
+                mongoTemplate.save(basketballTeam);
 
-        // Math Club
-        Activity mathClub = new Activity(
-                "Math Club",
-                "Solve challenging problems and prepare for math competitions",
-                "Tuesdays, 7:15 AM - 8:00 AM",
-                new ScheduleDetails(List.of("Tuesday"), LocalTime.of(7, 15), LocalTime.of(8, 0)),
-                10);
-        mathClub.setParticipants(List.of("james@mergington.edu", "benjamin@mergington.edu"));
-        mongoTemplate.save(mathClub);
+                // Clube de Arte
+                Activity artClub = new Activity(
+                                "Clube de Arte",
+                                "Explore diversas técnicas artísticas e crie obras-primas",
+                                "Quintas-feiras, 15:15 - 17:00",
+                                new ScheduleDetails(List.of("Thursday"), LocalTime.of(15, 15), LocalTime.of(17, 0)),
+                                15,
+                                ActivityType.ARTS);
+                artClub.setParticipants(List.of("amelia@mergington.edu", "harper@mergington.edu"));
+                mongoTemplate.save(artClub);
 
-        // Debate Team
-        Activity debateTeam = new Activity(
-                "Debate Team",
-                "Develop public speaking and argumentation skills",
-                "Fridays, 3:30 PM - 5:30 PM",
-                new ScheduleDetails(List.of("Friday"), LocalTime.of(15, 30), LocalTime.of(17, 30)),
-                12);
-        debateTeam.setParticipants(List.of("charlotte@mergington.edu", "amelia@mergington.edu"));
-        mongoTemplate.save(debateTeam);
+                // Clube de Teatro
+                Activity dramaClub = new Activity(
+                                "Clube de Teatro",
+                                "Atue, dirija e produza peças e apresentações teatrais",
+                                "Segundas e quartas-feiras, 15:30 - 17:30",
+                                new ScheduleDetails(List.of("Monday", "Wednesday"), LocalTime.of(15, 30),
+                                                LocalTime.of(17, 30)),
+                                20,
+                                ActivityType.ARTS);
+                dramaClub.setParticipants(List.of("ella@mergington.edu", "scarlett@mergington.edu"));
+                mongoTemplate.save(dramaClub);
 
-        // Weekend Robotics Workshop
-        Activity roboticsWorkshop = new Activity(
-                "Weekend Robotics Workshop",
-                "Build and program robots in our state-of-the-art workshop",
-                "Saturdays, 10:00 AM - 2:00 PM",
-                new ScheduleDetails(List.of("Saturday"), LocalTime.of(10, 0), LocalTime.of(14, 0)),
-                15);
-        roboticsWorkshop.setParticipants(List.of("ethan@mergington.edu", "oliver@mergington.edu"));
-        mongoTemplate.save(roboticsWorkshop);
+                // Clube de Matemática
+                Activity mathClub = new Activity(
+                                "Clube de Matemática",
+                                "Resolva problemas desafiadores e prepare-se para competições de matemática",
+                                "Terças-feiras, 07:15 - 08:00",
+                                new ScheduleDetails(List.of("Tuesday"), LocalTime.of(7, 15), LocalTime.of(8, 0)),
+                                10,
+                                ActivityType.ACADEMIC);
+                mathClub.setParticipants(List.of("james@mergington.edu", "benjamin@mergington.edu"));
+                mongoTemplate.save(mathClub);
 
-        // Science Olympiad
-        Activity scienceOlympiad = new Activity(
-                "Science Olympiad",
-                "Weekend science competition preparation for regional and state events",
-                "Saturdays, 1:00 PM - 4:00 PM",
-                new ScheduleDetails(List.of("Saturday"), LocalTime.of(13, 0), LocalTime.of(16, 0)),
-                18);
-        scienceOlympiad.setParticipants(List.of("isabella@mergington.edu", "lucas@mergington.edu"));
-        mongoTemplate.save(scienceOlympiad);
+                // Equipe de Debates
+                Activity debateTeam = new Activity(
+                                "Equipe de Debates",
+                                "Desenvolva habilidades de oratória e argumentação",
+                                "Sextas-feiras, 15:30 - 17:30",
+                                new ScheduleDetails(List.of("Friday"), LocalTime.of(15, 30), LocalTime.of(17, 30)),
+                                12,
+                                ActivityType.ACADEMIC);
+                debateTeam.setParticipants(List.of("charlotte@mergington.edu", "amelia@mergington.edu"));
+                mongoTemplate.save(debateTeam);
 
-        // Sunday Chess Tournament
-        Activity chessTournament = new Activity(
-                "Sunday Chess Tournament",
-                "Weekly tournament for serious chess players with rankings",
-                "Sundays, 2:00 PM - 5:00 PM",
-                new ScheduleDetails(List.of("Sunday"), LocalTime.of(14, 0), LocalTime.of(17, 0)),
-                16);
-        chessTournament.setParticipants(List.of("william@mergington.edu", "jacob@mergington.edu"));
-        mongoTemplate.save(chessTournament);
-    }
+                // Oficina de Robótica
+                Activity roboticsWorkshop = new Activity(
+                                "Oficina de Robótica",
+                                "Construa e programe robôs em nossa oficina de última geração",
+                                "Sábados, 10:00 - 14:00",
+                                new ScheduleDetails(List.of("Saturday"), LocalTime.of(10, 0), LocalTime.of(14, 0)),
+                                15,
+                                ActivityType.TECHNOLOGY);
+                roboticsWorkshop.setParticipants(List.of("ethan@mergington.edu", "oliver@mergington.edu"));
+                mongoTemplate.save(roboticsWorkshop);
 
-    private void seedTeachers() {
-        // Get passwords from environment variables or use secure defaults
-        String rodriguezPassword = environment.getProperty("TEACHER_RODRIGUEZ_PASSWORD", "art123");
-        String chenPassword = environment.getProperty("TEACHER_CHEN_PASSWORD", "chess123");
-        String principalPassword = environment.getProperty("PRINCIPAL_PASSWORD", "admin123");
+                // Olimpíada de Ciências
+                Activity scienceOlympiad = new Activity(
+                                "Olimpíada de Ciências",
+                                "Preparação para competições científicas regionais e estaduais aos fins de semana",
+                                "Sábados, 13:00 - 16:00",
+                                new ScheduleDetails(List.of("Saturday"), LocalTime.of(13, 0), LocalTime.of(16, 0)),
+                                18,
+                                ActivityType.ACADEMIC);
+                scienceOlympiad.setParticipants(List.of("isabella@mergington.edu", "lucas@mergington.edu"));
+                mongoTemplate.save(scienceOlympiad);
 
-        // Create Rodriguez teacher
-        Teacher rodriguez = new Teacher(
-                "mrodriguez",
-                "Ms. Rodriguez",
-                passwordEncoder.encode(rodriguezPassword),
-                Teacher.Role.TEACHER);
-        mongoTemplate.save(rodriguez);
+                // Torneio de Xadrez
+                Activity chessTournament = new Activity(
+                                "Torneio de Xadrez",
+                                "Torneio semanal para jogadores sérios de xadrez com classificações",
+                                "Domingos, 14:00 - 17:00",
+                                new ScheduleDetails(List.of("Sunday"), LocalTime.of(14, 0), LocalTime.of(17, 0)),
+                                16,
+                                ActivityType.ACADEMIC);
+                chessTournament.setParticipants(List.of("william@mergington.edu", "jacob@mergington.edu"));
+                mongoTemplate.save(chessTournament);
 
-        // Create Chen teacher
-        Teacher chen = new Teacher(
-                "mchen",
-                "Mr. Chen",
-                passwordEncoder.encode(chenPassword),
-                Teacher.Role.TEACHER);
-        mongoTemplate.save(chen);
+                // Serviço Comunitário
+                Activity communityService = new Activity(
+                                "Serviço Comunitário",
+                                "Seja voluntário em projetos da comunidade local e ajude quem precisa",
+                                "Sábados, 09:00 - 12:00",
+                                new ScheduleDetails(List.of("Saturday"), LocalTime.of(9, 0), LocalTime.of(12, 0)),
+                                25,
+                                ActivityType.COMMUNITY);
+                communityService.setParticipants(List.of("grace@mergington.edu", "aiden@mergington.edu"));
+                mongoTemplate.save(communityService);
+        }
 
-        // Create Principal
-        Teacher principal = new Teacher(
-                "principal",
-                "Principal Martinez",
-                passwordEncoder.encode(principalPassword),
-                Teacher.Role.ADMIN);
-        mongoTemplate.save(principal);
-    }
+        private void seedTeachers() {
+                // Get passwords from environment variables or use secure defaults
+                String rodriguezPassword = environment.getProperty("TEACHER_RODRIGUEZ_PASSWORD", "art123");
+                String chenPassword = environment.getProperty("TEACHER_CHEN_PASSWORD", "chess123");
+                String principalPassword = environment.getProperty("PRINCIPAL_PASSWORD", "admin123");
 
-    @RollbackExecution
-    public void rollback() {
-        // Remove all seeded activities
-        mongoTemplate.remove(new Query(Criteria.where("name").in(
-                "Chess Club", "Programming Class", "Morning Fitness", "Soccer Team",
-                "Basketball Team", "Art Club", "Drama Club", "Math Club",
-                "Debate Team", "Weekend Robotics Workshop", "Science Olympiad",
-                "Sunday Chess Tournament")), Activity.class);
+                // Create Rodriguez teacher
+                Teacher rodriguez = new Teacher(
+                                "mrodriguez",
+                                "Sr. Rodriguez",
+                                passwordEncoder.encode(rodriguezPassword),
+                                Teacher.Role.TEACHER);
+                mongoTemplate.save(rodriguez);
 
-        // Remove all seeded teachers
-        mongoTemplate.remove(new Query(Criteria.where("_id").in("admin", "mrodriguez", "mchen", "principal")),
-                Teacher.class);
-    }
+                // Create Chen teacher
+                Teacher chen = new Teacher(
+                                "mchen",
+                                "Sra. Chen",
+                                passwordEncoder.encode(chenPassword),
+                                Teacher.Role.TEACHER);
+                mongoTemplate.save(chen);
+
+                // Create Principal
+                Teacher principal = new Teacher(
+                                "principal",
+                                "Diretor Martinez",
+                                passwordEncoder.encode(principalPassword),
+                                Teacher.Role.ADMIN);
+                mongoTemplate.save(principal);
+        }
+
+        @RollbackExecution
+        public void rollback() {
+                // Remove all seeded activities
+                mongoTemplate.remove(new Query(Criteria.where("name").in(
+                                "Clube de Xadrez", "Aula de Programação", "Fitness Matinal", "Time de Futebol",
+                                "Time de Basquete", "Clube de Arte", "Clube de Teatro", "Clube de Matemática",
+                                "Equipe de Debates", "Oficina de Robótica", "Olimpíada de Ciências",
+                                "Torneio de Xadrez", "Serviço Comunitário")), Activity.class);
+
+                // Remove all seeded teachers
+                mongoTemplate.remove(new Query(Criteria.where("_id").in("admin", "mrodriguez", "mchen", "principal")),
+                                Teacher.class);
+        }
 }

@@ -25,14 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeLoginModal = document.querySelector(".close-login-modal");
   const loginMessage = document.getElementById("login-message");
 
-  // Activity categories with corresponding colors
-  const activityTypes = {
-    sports: { label: "Sports", color: "#e8f5e9", textColor: "#2e7d32" },
-    arts: { label: "Arts", color: "#f3e5f5", textColor: "#7b1fa2" },
-    academic: { label: "Academic", color: "#e3f2fd", textColor: "#1565c0" },
-    community: { label: "Community", color: "#fff3e0", textColor: "#e65100" },
-    technology: { label: "Technology", color: "#e8eaf6", textColor: "#3949ab" },
-  };
+
 
   // State for activities and filters
   let allActivities = {};
@@ -182,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!response.ok) {
         showLoginMessage(
-          data.detail || "Invalid username or password",
+          data.detail || "Nome de usuário ou senha inválidos",
           "error"
         );
         return false;
@@ -193,11 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("currentUser", JSON.stringify(data));
       updateAuthUI();
       closeLoginModalHandler();
-      showMessage(`Welcome, ${currentUser.display_name}!`, "success");
+      showMessage(`Bem-vindo(a), ${currentUser.display_name}!`, "success");
       return true;
     } catch (error) {
       console.error("Error during login:", error);
-      showLoginMessage("Login failed. Please try again.", "error");
+      showLoginMessage("Falha no login. Tente novamente.", "error");
       return false;
     }
   }
@@ -207,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUser = null;
     localStorage.removeItem("currentUser");
     updateAuthUI();
-    showMessage("You have been logged out.", "info");
+    showMessage("Você foi desconectado.", "info");
   }
 
   // Show message in login modal
@@ -304,89 +297,30 @@ document.addEventListener("DOMContentLoaded", () => {
     return details.schedule;
   }
 
-  // Function to determine activity type (this would ideally come from backend)
-  function getActivityType(activityName, description) {
-    const name = activityName.toLowerCase();
-    const desc = description.toLowerCase();
-
-    if (
-      name.includes("soccer") ||
-      name.includes("basketball") ||
-      name.includes("sport") ||
-      name.includes("fitness") ||
-      desc.includes("team") ||
-      desc.includes("game") ||
-      desc.includes("athletic")
-    ) {
-      return "sports";
-    } else if (
-      name.includes("art") ||
-      name.includes("music") ||
-      name.includes("theater") ||
-      name.includes("drama") ||
-      desc.includes("creative") ||
-      desc.includes("paint")
-    ) {
-      return "arts";
-    } else if (
-      name.includes("science") ||
-      name.includes("math") ||
-      name.includes("academic") ||
-      name.includes("study") ||
-      name.includes("olympiad") ||
-      desc.includes("learning") ||
-      desc.includes("education") ||
-      desc.includes("competition")
-    ) {
-      return "academic";
-    } else if (
-      name.includes("volunteer") ||
-      name.includes("community") ||
-      desc.includes("service") ||
-      desc.includes("volunteer")
-    ) {
-      return "community";
-    } else if (
-      name.includes("computer") ||
-      name.includes("coding") ||
-      name.includes("tech") ||
-      name.includes("robotics") ||
-      desc.includes("programming") ||
-      desc.includes("technology") ||
-      desc.includes("digital") ||
-      desc.includes("robot")
-    ) {
-      return "technology";
-    }
-
-    // Default to "academic" if no match
-    return "academic";
-  }
-
-  // Function to fetch activities from API with optional day and time filters
+  // Função para buscar atividades da API com filtros opcionais de dia e horário
   async function fetchActivities() {
-    // Show loading skeletons first
+    // Exibir esqueletos de carregamento primeiro
     showLoadingSkeletons();
 
     try {
-      // Build query string with filters if they exist
+      // Construir string de consulta com filtros se existirem
       let queryParams = [];
 
-      // Handle day filter
+      // Lidar com filtro de dia
       if (currentDay) {
         queryParams.push(`day=${encodeURIComponent(currentDay)}`);
       }
 
-      // Handle time range filter
+      // Lidar com filtro de faixa de horário
       if (currentTimeRange) {
         const range = timeRanges[currentTimeRange];
 
-        // Handle weekend special case
+        // Lidar com caso especial de fim de semana
         if (currentTimeRange === "weekend") {
-          // Don't add time parameters for weekend filter
-          // Weekend filtering will be handled on the client side
+          // Não adicionar parâmetros de tempo para filtro de fim de semana
+          // A filtragem de fim de semana será tratada no lado do cliente
         } else if (range) {
-          // Add time parameters for before/after school
+          // Adicionar parâmetros de tempo para antes/depois da escola
           queryParams.push(`start_time=${encodeURIComponent(range.start)}`);
           queryParams.push(`end_time=${encodeURIComponent(range.end)}`);
         }
@@ -397,35 +331,36 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(`/activities${queryString}`);
       const activities = await response.json();
 
-      // Save the activities data
+      // Salvar os dados das atividades
       allActivities = activities;
 
-      // Apply search and filter, and handle weekend filter in client
+      // Aplicar pesquisa e filtro, e lidar com filtro de fim de semana no cliente
       displayFilteredActivities();
     } catch (error) {
       activitiesList.innerHTML =
-        "<p>Failed to load activities. Please try again later.</p>";
+        "<p>Falha ao carregar atividades. Por favor, tente novamente mais tarde.</p>";
       console.error("Error fetching activities:", error);
     }
   }
 
-  // Function to display filtered activities
+  // Função para exibir atividades filtradas
   function displayFilteredActivities() {
-    // Clear the activities list
+    // Limpar a lista de atividades
     activitiesList.innerHTML = "";
 
-    // Apply client-side filtering - this handles category filter and search, plus weekend filter
+    // Aplicar filtros do lado do cliente - isso lida com filtros de categoria e pesquisa, além do filtro de fim de semana
     let filteredActivities = {};
 
     Object.entries(allActivities).forEach(([name, details]) => {
-      const activityType = getActivityType(name, details.description);
+      // Usar o tipo de atividade fornecido pelo backend
+      const activityType = details.type ? details.type.name : 'academic';
 
-      // Apply category filter
+      // Aplicar filtro de categoria
       if (currentFilter !== "all" && activityType !== currentFilter) {
         return;
       }
 
-      // Apply weekend filter if selected
+      // Aplicar filtro de fim de semana se selecionado
       if (currentTimeRange === "weekend" && details.scheduleDetails) {
         const activityDays = details.scheduleDetails.days;
         const isWeekendActivity = activityDays.some((day) =>
@@ -437,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Apply search filter
+      // Aplicar filtro de pesquisa
       const searchableContent = [
         name.toLowerCase(),
         details.description.toLowerCase(),
@@ -451,40 +386,40 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Activity passed all filters, add to filtered list
+      // Atividade passou por todos os filtros, adicionar à lista filtrada
       filteredActivities[name] = details;
     });
 
-    // Check if there are any results
+    // Verificar se há resultados
     if (Object.keys(filteredActivities).length === 0) {
       activitiesList.innerHTML = `
         <div class="no-results">
-          <h4>No activities found</h4>
-          <p>Try adjusting your search or filter criteria</p>
+          <h4>Nenhuma atividade encontrada</h4>
+          <p>Tente ajustar sua pesquisa ou critérios de filtro</p>
         </div>
       `;
       return;
     }
 
-    // Display filtered activities
+    // Exibir atividades filtradas
     Object.entries(filteredActivities).forEach(([name, details]) => {
       renderActivityCard(name, details);
     });
   }
 
-  // Function to render a single activity card
+  // Função para renderizar um cartão de atividade individual
   function renderActivityCard(name, details) {
     const activityCard = document.createElement("div");
     activityCard.className = "activity-card";
 
-    // Calculate spots and capacity
+    // Calcular vagas e capacidade
     const totalSpots = details.maxParticipants;
     const takenSpots = details.participants.length;
     const spotsLeft = totalSpots - takenSpots;
     const capacityPercentage = (takenSpots / totalSpots) * 100;
     const isFull = spotsLeft <= 0;
 
-    // Determine capacity status class
+    // Determinar classe de status de capacidade
     let capacityStatusClass = "capacity-available";
     if (isFull) {
       capacityStatusClass = "capacity-full";
@@ -492,29 +427,32 @@ document.addEventListener("DOMContentLoaded", () => {
       capacityStatusClass = "capacity-near-full";
     }
 
-    // Determine activity type
-    const activityType = getActivityType(name, details.description);
-    const typeInfo = activityTypes[activityType];
+    // Usar informações de tipo fornecidas pelo backend
+    const typeInfo = {
+      label: details.type.label,
+      color: details.type.color,
+      textColor: details.type.textColor
+    };
 
-    // Format the schedule using the new helper function
+    // Formatar o cronograma usando a função auxiliar
     const formattedSchedule = formatSchedule(details);
 
-    // Create activity tag
+    // Criar tag de atividade
     const tagHtml = `
       <span class="activity-tag" style="background-color: ${typeInfo.color}; color: ${typeInfo.textColor}">
         ${typeInfo.label}
       </span>
     `;
 
-    // Create capacity indicator
+    // Criar indicador de capacidade
     const capacityIndicator = `
       <div class="capacity-container ${capacityStatusClass}">
         <div class="capacity-bar-bg">
           <div class="capacity-bar-fill" style="width: ${capacityPercentage}%"></div>
         </div>
         <div class="capacity-text">
-          <span>${takenSpots} enrolled</span>
-          <span>${spotsLeft} spots left</span>
+          <span>${takenSpots} inscritos</span>
+          <span>${spotsLeft} vagas restantes</span>
         </div>
       </div>
     `;
@@ -524,12 +462,12 @@ document.addEventListener("DOMContentLoaded", () => {
       <h4>${name}</h4>
       <p>${details.description}</p>
       <p class="tooltip">
-        <strong>Schedule:</strong> ${formattedSchedule}
-        <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
+        <strong>Horário:</strong> ${formattedSchedule}
+        <span class="tooltip-text">Encontros regulares neste horário durante o semestre</span>
       </p>
       ${capacityIndicator}
       <div class="participants-list">
-        <h5>Current Participants:</h5>
+        <h5>Participantes Atuais:</h5>
         <ul>
           ${details.participants
             .map(
@@ -541,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   ? `
                 <span class="delete-participant tooltip" data-activity="${name}" data-email="${email}">
                   ✖
-                  <span class="tooltip-text">Unregister this student</span>
+                  <span class="tooltip-text">Cancelar inscrição deste estudante</span>
                 </span>
               `
                   : ""
@@ -559,25 +497,25 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="register-button" data-activity="${name}" ${
                 isFull ? "disabled" : ""
               }>
-            ${isFull ? "Activity Full" : "Register Student"}
+            ${isFull ? "Atividade Lotada" : "Inscrever Estudante"}
           </button>
         `
             : `
           <div class="auth-notice">
-            Teachers can register students.
+            Professores podem inscrever estudantes.
           </div>
         `
         }
       </div>
     `;
 
-    // Add click handlers for delete buttons
+    // Adicionar manipuladores de clique para botões de exclusão
     const deleteButtons = activityCard.querySelectorAll(".delete-participant");
     deleteButtons.forEach((button) => {
       button.addEventListener("click", handleUnregister);
     });
 
-    // Add click handler for register button (only when authenticated)
+    // Adicionar manipulador de clique para botão de registro (apenas quando autenticado)
     if (currentUser) {
       const registerButton = activityCard.querySelector(".register-button");
       if (!isFull) {
@@ -684,11 +622,11 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmDialog.className = "modal hidden";
       confirmDialog.innerHTML = `
         <div class="modal-content">
-          <h3>Confirm Action</h3>
+          <h3>Confirmar Ação</h3>
           <p id="confirm-message"></p>
           <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-            <button id="cancel-button" class="cancel-btn">Cancel</button>
-            <button id="confirm-button" class="confirm-btn">Confirm</button>
+            <button id="cancel-button" class="cancel-btn">Cancelar</button>
+            <button id="confirm-button" class="confirm-btn">Confirmar</button>
           </div>
         </div>
       `;
@@ -757,7 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if user is authenticated
     if (!currentUser) {
       showMessage(
-        "You must be logged in as a teacher to unregister students.",
+        "Você deve estar logado como professor para cancelar inscrições.",
         "error"
       );
       return;
@@ -768,7 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show confirmation dialog
     showConfirmationDialog(
-      `Are you sure you want to unregister ${email} from ${activity}?`,
+      `Tem certeza que deseja cancelar a inscrição de ${email} em ${activity}?`,
       async () => {
         try {
           const response = await fetch(
@@ -789,10 +727,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Refresh the activities list
             fetchActivities();
           } else {
-            showMessage(result.detail || "An error occurred", "error");
+            showMessage(result.detail || "Ocorreu um erro", "error");
           }
         } catch (error) {
-          showMessage("Failed to unregister. Please try again.", "error");
+          showMessage("Falha ao cancelar inscrição. Tente novamente.", "error");
           console.error("Error unregistering:", error);
         }
       }
@@ -818,7 +756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check if user is authenticated
     if (!currentUser) {
       showMessage(
-        "You must be logged in as a teacher to register students.",
+        "Você deve estar logado como professor para inscrever estudantes.",
         "error"
       );
       return;
@@ -847,10 +785,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Refresh the activities list after successful signup
         fetchActivities();
       } else {
-        showMessage(result.detail || "An error occurred", "error");
+        showMessage(result.detail || "Ocorreu um erro", "error");
       }
     } catch (error) {
-      showMessage("Failed to sign up. Please try again.", "error");
+      showMessage("Falha na inscrição. Tente novamente.", "error");
       console.error("Error signing up:", error);
     }
   });
