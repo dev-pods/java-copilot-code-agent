@@ -34,7 +34,7 @@ Este workflow GitHub Actions pré-configura o ambiente de desenvolvimento:
 - **Contexto**: Agent entende melhor o projeto e toma decisões mais precisas
 - **Eficiência**: Reduz uso de minutos do GitHub Actions e melhora performance
 
-> [!DICA]
+> [!TIP]
 > Você também pode [habilitar um servidor Model Context Protocol (MCP)](https://docs.github.com/en/enterprise-cloud@latest/early-access/copilot/coding-agent/extending-copilot-coding-agent-with-model-context-protocol) para dar ainda mais funcionalidades ao Copilot!
 
 ### 📚 Documentação Oficial e Links Úteis
