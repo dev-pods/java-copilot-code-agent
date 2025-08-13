@@ -1,53 +1,68 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build Project",
-            "type": "shell",
-            "command": "mvn clean install",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Tests",
-            "type": "shell",
-            "command": "mvn test",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Spring Boot Application",
-            "type": "shell",
-            "command": "mvn spring-boot:run",
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Package Application",
-            "type": "shell",
-            "command": "mvn package -DskipTests",
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": []
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Project",
+			"type": "shell",
+			"command": "mvn clean install",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Tests",
+			"type": "shell",
+			"command": "mvn test",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run Spring Boot Application",
+			"type": "shell",
+			"command": "mvn spring-boot:run",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Package Application",
+			"type": "shell",
+			"command": "mvn package -DskipTests",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Remove unnecessary migrations",
+			"type": "shell",
+			"command": "rm -f src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/migrations/V002_AddActivityType.java src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/migrations/V003_ForceUpdateActivityTypes.java"
+		},
+		{
+			"label": "Test Activities API",
+			"type": "shell",
+			"command": "chmod +x test_activities.sh && ./test_activities.sh"
+		},
+		{
+			"label": "Cleanup test script",
+			"type": "shell",
+			"command": "rm test_activities.sh"
+		}
+	]
 }
