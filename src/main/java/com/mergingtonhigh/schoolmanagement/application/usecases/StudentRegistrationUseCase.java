@@ -27,11 +27,11 @@ public class StudentRegistrationUseCase {
     public String signupForActivity(String activityName, String email, String teacherUsername) {
         // Validate teacher authentication
         teacherRepository.findByUsername(teacherUsername)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid teacher credentials"));
+                .orElseThrow(() -> new IllegalArgumentException("Credenciais de professor inválidas"));
 
         // Get the activity
         Activity activity = activityRepository.findByName(activityName)
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Atividade não encontrada"));
 
         // Create email value object and add participant
         Email studentEmail = new Email(email);
@@ -40,7 +40,7 @@ public class StudentRegistrationUseCase {
         // Save the updated activity
         activityRepository.save(activity);
 
-        return String.format("Signed up %s for %s", email, activityName);
+        return String.format("Inscrito %s para %s", email, activityName);
     }
 
     /**
@@ -49,11 +49,11 @@ public class StudentRegistrationUseCase {
     public String unregisterFromActivity(String activityName, String email, String teacherUsername) {
         // Validate teacher authentication
         teacherRepository.findByUsername(teacherUsername)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid teacher credentials"));
+                .orElseThrow(() -> new IllegalArgumentException("Credenciais de professor inválidas"));
 
         // Get the activity
         Activity activity = activityRepository.findByName(activityName)
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Atividade não encontrada"));
 
         // Create email value object and remove participant
         Email studentEmail = new Email(email);
@@ -62,6 +62,6 @@ public class StudentRegistrationUseCase {
         // Save the updated activity
         activityRepository.save(activity);
 
-        return String.format("Unregistered %s from %s", email, activityName);
+        return String.format("Desinscrito %s de %s", email, activityName);
     }
 }
